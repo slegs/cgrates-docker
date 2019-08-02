@@ -97,18 +97,6 @@
 },
 
 
-"kamailio_agent": {
-	"enabled": true,
-	"evapi_conns":[
-		{"address": "127.0.0.1:8448", "reconnects": 5}
-	],
-	"sessions_conns": [
-		{"address": "*internal"},
-	],
-	"create_cdr": true,
-},
-
-
 "attributes": {
 	"enabled": true,
 	"string_indexed_fields": ["Account"],			
