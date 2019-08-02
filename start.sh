@@ -8,5 +8,8 @@ sed -i 's/MONGO_STORDB/'"$MONGO_STORDB"'/g' /etc/cgrates/cgrates.json
 #cat the log file to screen
 #cat /etc/cgrates/cgrates.json
 
+#Set versions (if first time launch) 
+/usr/bin/cgr-migrator -exec=*set_versions -config_path=/etc/cgrates
+
 #Start cgr-engine with log to stdout and debug level based on env variable
 /usr/bin/cgr-engine -config_path=/etc/cgrates -logger=*stdout -log_level=$CGRATES_LOG_LEVEL
