@@ -21,6 +21,9 @@ RUN dpkg -i /tmp/cgrates.deb
 #tidy up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+#Copy cgrates.json into image
+COPY cgrates.json /etc/cgrates/cgrates.json
+
 #Copy startfile into image
 COPY start.sh /opt/start.sh
 RUN chmod +x /opt/start.sh
