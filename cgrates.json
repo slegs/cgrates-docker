@@ -19,14 +19,14 @@
 "data_db": {
         "db_type": "mongo",
         "db_host": "MONGO_HOST",
-        "db_name": "10",
+        "db_name": "MONGO_DATADB",
         "db_port": 27017,
 },
 
 "stor_db": {
         "db_type": "mongo",
         "db_host": "MONGO_HOST",
-        "db_name": "cgrates",
+        "db_name": "MONGO_STORDB",
         "db_port": 27017,
 },
 
