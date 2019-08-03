@@ -10,9 +10,9 @@
 
 
 "listen": {
-	"rpc_json": ":2012",
-	"rpc_gob": ":2013",
-	"http": ":2080",
+	"rpc_json": "0.0.0.0:2012",
+	"rpc_gob": "0.0.0.0:2013",
+	"http": "0.0.0.0:2080",
 },
 
 
@@ -37,7 +37,7 @@
 
 
 "rals": {
-	"enabled": CGRATES_RALS_LOCAL,
+	"enabled": true,
 	"thresholds_conns": [
 		{"address": "127.0.0.1:2012", "transport": "*json"},
 	],
@@ -48,7 +48,7 @@
 
 
 "cdrs": {
-	"enabled": CGRATES_RALS_LOCAL,
+	"enabled": true,
 	"stats_conns": [
 		{"address": "127.0.0.1:2012", "transport": "*json"},
 	],
@@ -57,84 +57,39 @@
 
 
 "chargers": {
-	"enabled": CGRATES_RALS_LOCAL,
+	"enabled": true,
 	"attributes_conns": [
 		{"address": "*internal"}
 	],
 },
 
 
-"sessions": {
-	"enabled": true,
-	"rals_conns": [
-		CGRATES_RALS_CONNS
-	],
-	"cdrs_conns": [
-		CGRATES_RALS_CONNS
-	],
-	"resources_conns": [
-                CGRATES_RALS_CONNS
-	],
-	"suppliers_conns": [
-                CGRATES_RALS_CONNS
-	],
-	"attributes_conns": [
-                CGRATES_RALS_CONNS
-	],
-	"stats_conns": [
-                CGRATES_RALS_CONNS
-	],
-	"thresholds_conns": [
-                CGRATES_RALS_CONNS
-	],
-	"chargers_conns": [
-                CGRATES_RALS_CONNS
-	],
-	"store_session_costs": true,
-	"debit_interval": "5s",
-	"channel_sync_interval":"5m",
-},
-
-
-"kamailio_agent": {
-        "enabled": CGRATES_KAMAILIO_ENABLED,
-        "evapi_conns":[
-                {"address": "CGRATES_KAMAILIO_ADDRESS", "reconnects": 10}
-        ],
-        "sessions_conns": [
-                {"address": "*internal"},
-        ],
-        "create_cdr": true,
-},
-
-
-
 "attributes": {
-	"enabled": CGRATES_RALS_LOCAL,
+	"enabled": true,
 	"string_indexed_fields": ["Account"],			
 },
 
 
 "resources": {
-	"enabled": CGRATES_RALS_LOCAL,
+	"enabled": true,
 	"string_indexed_fields": ["Account"],
 },
 
 
 "stats": {
-	"enabled": CGRATES_RALS_LOCAL,
+	"enabled": true,
 	"string_indexed_fields": ["Account","RunID","Destination"],
 },
 
 
 "thresholds": {
-	"enabled": CGRATES_RALS_LOCAL,
+	"enabled": true,
 	"string_indexed_fields": ["Account"],
 },
 
 
 "suppliers": {
-	"enabled": CGRATES_RALS_LOCAL,
+	"enabled": true,
 	"rals_conns": [
 		{"address": "*internal"},
 	],

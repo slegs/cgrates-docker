@@ -37,7 +37,7 @@
 
 
 "rals": {
-	"enabled": true,
+	"enabled": CGRATES_RALS_LOCAL,
 	"thresholds_conns": [
 		{"address": "127.0.0.1:2012", "transport": "*json"},
 	],
@@ -67,7 +67,7 @@
 "sessions": {
 	"enabled": true,
 	"rals_conns": [
-		{"address": "127.0.0.1:2012", "transport": "*json"},
+		CGRATES_RALS_CONNS
 	],
 	"cdrs_conns": [
 		{"address": "127.0.0.1:2012", "transport": "*json"},

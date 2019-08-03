@@ -1,0 +1,41 @@
+{
+// CGRateS Configuration file
+//
+// Used for multiple RAL configuration tests
+// Starts rater, scheduler
+
+"general": {
+                "node_id":"",
+},
+
+"listen": {
+        "rpc_json": "0.0.0.0:2012",                            // RPC JSON listening address
+        "rpc_gob": "0.0.0.0:2013",                             // RPC GOB listening address
+        "http": "0.0.0.0:2080",                                        // HTTP listening address
+},
+
+"data_db": {
+        "db_type": "mongo",
+        "db_host": "MONGO_HOST",
+        "db_name": "MONGO_DATADB",
+        "db_port": 27017,
+},
+
+"stor_db": {
+        "db_type": "mongo",
+        "db_host": "MONGO_HOST",
+        "db_name": "MONGO_STORDB",
+        "db_port": 27017,
+},
+
+"cdrs": {
+        "enabled": true,                                        // enable CDRs service: <true|false>
+},
+
+"rals": {
+        "enabled": true,                                        // enable Rater service: <true|false>
+},
+
+}
+
+

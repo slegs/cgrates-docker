@@ -7,6 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV MONGO_HOST ${MONGO_HOST:-127.0.0.1}
 ENV MONGO_STORDB ${MONGO_STORDB:-cgrates}
 ENV MONGO_DATADB ${MONGO_DATADB:-10}
+ENV CGRATES_CONFIG ${CGRATES_CONFIG:-SESSION}
 ENV CGRATES_KAMAILIO_ENABLED ${CGRATES_KAMAILIO_ENABLED:-false}
 ENV KAMAILIO_NAME ${KAMAILIO_NAME:-kamailio}
 ENV KAMAILIO_PORT ${KAMAILIO_PORT:-8448}
@@ -14,6 +15,8 @@ ENV KAMAILIO_SUFFIX ${KAMAILIO_SUFFIX}
 ENV CGRATES_LOG_LEVEL ${CGRATES_LOG_LEVEL:-1}
 ENV CGRATES_NAME ${CGRATES_NAME:-cgrates}
 ENV CGRATES_IP ${CGRATES_IP:-127.0.0.1}
+ENV CGRATES_RALS_LOCAL ${CGRATES_RALS_LOCAL:-true}
+ENV CGRATES_RALS_CONNS ${CGRATES_RALS_CONNS}
 
 #Set Timezone
 ENV TZ=${CONTAINER_TZ:-Europe/Dublin}
@@ -29,8 +32,9 @@ RUN dpkg -i /tmp/cgrates.deb
 #tidy up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-#Copy cgrates.json into image
-COPY cgrates.json /etc/cgrates/cgrates.json
+#Copy our config files into image
+RUN mkdir /opt/cgrates-cfg-files
+COPY config/cgrates*.json /opt/cgrates-cfg-files/
 
 #Copy startfile into image
 COPY start.sh /opt/start.sh
