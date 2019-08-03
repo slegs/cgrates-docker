@@ -1,0 +1,17 @@
+
+
+
+<profile name="cgrtest">
+   <!--
+   Used for CGRateS test units
+   -->
+   <settings>
+      <param name="context" value="default" />
+      <param name="sip-ip" value="127.0.0.1" />
+      <param name="sip-port" value="5080" />
+      <param name="auth-calls" value="true" />
+      <param name="force-register-domain" value="$${domain}"/>
+      <param name="force-register-db-domain" value="$${domain}"/>
+   </settings>
+
+</profile>

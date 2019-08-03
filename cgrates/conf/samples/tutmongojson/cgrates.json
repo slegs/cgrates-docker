@@ -1,0 +1,33 @@
+{
+// CGRateS Configuration file
+
+
+"general": {
+	"log_level": 7,
+	"reply_timeout": "30s",
+	"dbdata_encoding": "json",
+},
+
+
+"listen": {
+	"rpc_json": ":2012",
+	"rpc_gob": ":2013",
+	"http": ":2080",
+},
+
+
+"data_db": {
+	"db_type": "mongo",
+	"db_name": "11",
+	"db_port": 27017,
+},
+
+
+"stor_db": {
+	"db_type": "mongo",
+	"db_name": "cgrates2",
+	"db_port": 27017,
+},
+
+
+}

@@ -1,0 +1,141 @@
+{
+
+// Real-time Online/Offline Charging System (OCS) for Telecom & ISP environments
+// Copyright (C) ITsysCOM GmbH
+
+"general": {
+    "log_level": 7,
+	"node_id":"CGRKamailio",
+	"reply_timeout": "5s",
+},
+
+
+"listen": {
+	"rpc_json": ":2012",
+	"rpc_gob": ":2013",
+	"http": ":2080",
+},
+
+
+"stor_db": {
+	"db_password": "CGRateS.org",
+},
+
+
+"scheduler": {
+	"enabled": true,
+},
+
+
+"rals": {
+	"enabled": true,
+	"thresholds_conns": [
+		{"address": "127.0.0.1:2012", "transport": "*json"},
+	],
+	"stats_conns": [
+		{"address": "127.0.0.1:2012", "transport": "*json"},
+	],
+},
+
+
+"cdrs": {
+	"enabled": true,
+	"stats_conns": [
+		{"address": "127.0.0.1:2012", "transport": "*json"},
+	],
+	"sessions_cost_retries": 5,
+},
+
+
+"chargers": {
+	"enabled": true,
+	"attributes_conns": [
+		{"address": "*internal"}
+	],
+},
+
+
+"sessions": {
+	"enabled": true,
+	"rals_conns": [
+		{"address": "127.0.0.1:2012", "transport": "*json"},
+	],
+	"cdrs_conns": [
+		{"address": "127.0.0.1:2012", "transport": "*json"},
+	],
+	"resources_conns": [
+		{"address": "127.0.0.1:2012", "transport": "*json"},
+	],
+	"suppliers_conns": [
+		{"address": "127.0.0.1:2012", "transport": "*json"},
+	],
+	"attributes_conns": [
+		{"address": "127.0.0.1:2012", "transport": "*json"},
+	],
+	"stats_conns": [
+		{"address": "127.0.0.1:2012", "transport": "*json"},
+	],
+	"thresholds_conns": [
+		{"address": "127.0.0.1:2012", "transport": "*json"},
+	],
+	"chargers_conns": [
+		{"address": "127.0.0.1:2012", "transport": "*json"},
+	],
+	"store_session_costs": true,
+	"debit_interval": "5s",
+	"channel_sync_interval":"5m",
+},
+
+
+"kamailio_agent": {
+	"enabled": true,
+	"evapi_conns":[
+		{"address": "127.0.0.1:8448", "reconnects": 5}
+	],
+	"sessions_conns": [
+		{"address": "*internal"},
+	],
+	"create_cdr": true,
+},
+
+
+"attributes": {
+	"enabled": true,
+	"string_indexed_fields": ["Account"],			
+},
+
+
+"resources": {
+	"enabled": true,
+	"string_indexed_fields": ["Account"],
+},
+
+
+"stats": {
+	"enabled": true,
+	"string_indexed_fields": ["Account","RunID","Destination"],
+},
+
+
+"thresholds": {
+	"enabled": true,
+	"string_indexed_fields": ["Account"],
+},
+
+
+"suppliers": {
+	"enabled": true,
+	"rals_conns": [
+		{"address": "*internal"},
+	],
+	"resources_conns": [
+		{"address": "*internal"},
+	],
+	"stats_conns": [
+		{"address": "*internal"},	
+	],
+	"string_indexed_fields": ["Account"],
+},
+
+
+}

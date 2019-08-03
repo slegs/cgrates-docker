@@ -1,0 +1,74 @@
+{
+
+// Real-time Charging System for Telecom & ISP environments
+// Copyright (C) ITsysCOM GmbH
+//
+// This file contains the default configuration hardcoded into CGRateS.
+// This is what you get when you load CGRateS with an empty configuration file.
+
+ "listen": {
+ 	"rpc_json": "0.0.0.0:3012",			// RPC JSON listening address
+ 	"rpc_gob": "0.0.0.0:3013",			// RPC GOB listening address
+ 	"http": "0.0.0.0:3080",				// HTTP listening address
+ },
+
+
+"stor_db": {								// database used to store offline tariff plans and CDRs
+	"db_password": "CGRateS.org",			// password to use when connecting to stordb
+},
+
+
+"rals": {
+	"enabled": true,						// enable Rater service: <true|false>
+},
+
+
+"scheduler": {
+	"enabled": true,						// start Scheduler service: <true|false>
+},
+
+
+"cdrs": {
+	"enabled": true,						// start the CDR Server service:  <true|false>
+},
+
+
+"attributes": {
+	"enabled": true,
+},
+
+
+"chargers": {
+	"enabled": true,
+	"attributes_conns": [
+		{"address": "*internal"}
+	],
+},
+
+
+"sessions": {
+	"enabled": true,						// starts SessionManager service: <true|false>
+	"rals_conns": [
+		{"address": "*internal"}
+	],
+	"cdrs_conns": [
+		{"address": "*internal"}
+	],
+	"chargers_conns": [
+		{"address": "*internal"}
+	],
+},
+
+
+"users": {
+	"enabled": true,							// starts User service: <true|false>.
+},
+
+"apier": {	
+	"caches_conns":[						// connections to CacheS for reloads
+		{"address": "127.0.0.1:3012", "transport": "*json"},
+	],						
+},
+
+
+}

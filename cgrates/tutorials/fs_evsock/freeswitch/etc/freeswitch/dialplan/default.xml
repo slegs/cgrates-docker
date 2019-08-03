@@ -1,0 +1,60 @@
+<include>
+  <context name="default">
+
+    <extension name="unloop">
+      <condition field="${unroll_loops}" expression="^true$" />
+      <condition field="${sip_looped_call}" expression="^true$">
+        <action application="deflect" data="${destination_number}" />
+      </condition>
+    </extension>
+    <extension name="call_debug" continue="true">
+      <condition field="${call_debug}" expression="^true$" break="never">
+        <action application="info" />
+      </condition>
+    </extension>
+   <extension name="CGRateS_Auth">
+      <condition field="${cgr_notify}" expression="^$">
+        <action application="info"/>
+        <action application="park" />
+      </condition>
+    </extension>
+    <extension name="CGRateS_AuthForbidden">
+      <condition field="${cgr_notify}" expression="^-INSUFFICIENT_FUNDS$">
+        <action application="set" data="proto_specific_hangup_cause=sip:403" />
+        <action application="hangup" />
+      </condition>
+    </extension>
+    <extension name="CGRateS_AuthForbidden">
+      <condition field="${cgr_notify}" expression="^-UNAUTHORIZED_DESTINATION$">
+        <action application="set" data="proto_specific_hangup_cause=sip:403" />
+        <action application="hangup" />
+      </condition>
+    </extension>
+    <extension name="CGRateS_Error">
+      <condition field="${cgr_notify}" expression="^-SYSTEM_ERROR$">
+        <action application="set" data="proto_specific_hangup_cause=sip:503" />
+        <action application="hangup" />
+      </condition>
+    </extension>
+    <extension name="CGRateS_Rals_Error">
+      <condition field="${cgr_notify}" expression="^RALS_ERROR">
+        <action application="set" data="proto_specific_hangup_cause=sip:503" />
+        <action application="hangup" />
+      </condition>
+    </extension>
+     <extension name="CGR Suppliers">
+      <condition field="cgr_suppliers" expression=".+">
+        <action application="set" data="cgr_supplier=${cgr_suppliers[1]}" />
+      </condition>
+    </extension>
+    <extension name="Local_Extension">
+      <condition field="destination_number" expression="^(10[01][0-9])$">
+        <action application="set" data="ringback=${us-ring}" />
+        <action application="set" data="call_timeout=30" />
+        <action application="bridge" data="user/${destination_number}@${domain_name}" />
+      </condition>
+    </extension>
+
+  </context>
+</include>
+

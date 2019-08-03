@@ -1,0 +1,50 @@
+{
+// CGRateS Configuration file
+// Used in multifile configuration tests
+// Should be the second file loaded
+
+"general": {
+	"default_request_type": "*pseudoprepaid",			// default request type to consider when missing from requests: <""|*prepaid|*postpaid|*pseudoprepaid|*rated>
+},
+
+"cdre": {
+	"*default": {
+		"export_path": "/tmp/cgrates/cdre",			// path where the exported CDRs will be placed
+	},
+	"export1": {
+		"header_fields": [
+			{"tag": "CgrId", "cdr_field_id": "cgrid", "type": "cdrfield", "value": "cgrid"},
+			{"tag":"RunId", "cdr_field_id": "mediation_runid", "type": "cdrfield", "value": "mediation_runid"},
+		],							// template of the exported header fields
+	}
+},
+
+"http_agent": [
+	{
+		"id": "conecto1",
+		"url": "/newConecto",
+		"sessions_conns": [
+			{"address": "127.0.0.2:2012", "transport": "*json"}
+		],
+		"request_payload":	"*url",
+		"reply_payload":	"*xml",
+		"request_processors": [
+			{
+				"id": "mtcall_cdr",
+				"filters": ["*string:~*req.request_type:MTCALL_CDR"],
+				"tenant": "cgrates.org",
+				"flags": ["*cdrs"],
+				"request_fields":[
+					{"tag": "RequestType", "field_id": "RequestType", "type": "*constant", 
+						"value": "*pseudoprepaid", "mandatory": true},	
+				],
+				"reply_fields":[
+					{"tag": "CDR_ID", "field_id": "CDR_RESPONSE.CDR_ID", "type": "*composed", 
+						"value": "~*req.CDR_ID", "mandatory": true},
+				],
+			}
+		],
+	},
+],
+
+}

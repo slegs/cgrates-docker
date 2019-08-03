@@ -1,0 +1,26 @@
+
+<configuration name="json_cdr.conf" description="JSON CDR">
+    <settings>
+      <param name="log-b-leg" value="false"/>
+      <param name="prefix-a-leg" value="false"/>
+      <param name="encode-values" value="false"/>
+      <param name="log-http-and-disk" value="false"/>
+      <param name="log-dir" value=""/>
+      <param name="rotate" value="false"/>
+      <param name="url" value="http://$${server_ip}:2080/freeswitch_json"/>
+      <param name="auth-scheme" value="basic"/>
+      <param name="cred" value="string"/>
+      <param name="encode" value="base64|true|false"/>
+      <param name="retries" value="0"/>
+      <param name="delay" value="5000"/>
+      <param name="disable-100-continue" value="false"/>
+      <param name="err-log-dir" value=""/>
+      <param name="ssl-key-path" value=""/>
+      <param name="ssl-key-password" value=""/>
+      <param name="ssl-version" value=""/>
+      <param name="enable-ssl-verifyhost" value="false"/>
+      <param name="ssl-cert-path" value=""/>
+      <param name="enable-cacert-check" value="false"/>
+      <param name="ssl-cacert-file" value=""/>
+    </settings>
+  </configuration>

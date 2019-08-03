@@ -1,0 +1,99 @@
+{
+// CGRateS Configuration file
+//
+
+
+"general": {
+	"node_id": "ALL",
+	"log_level": 7
+},
+
+
+"listen": {
+ 	"rpc_json": ":6012",
+	"rpc_gob": ":6013",
+	"http": ":6080",
+},
+
+"data_db": {								// database used to store runtime data (eg: accounts, cdr stats)
+	"db_type": "redis",						// data_db type: <redis|mongo>
+	"db_port": 6379, 						// data_db port to reach the database
+	"db_name": "11", 						// data_db database name to connect to
+},
+
+"stor_db": {
+	"db_password": "CGRateS.org",
+},
+
+"attributes": {
+	"enabled": true
+},
+
+"rals": {
+	"enabled": true,
+},
+
+"scheduler": {
+	"enabled": true,				
+},
+
+"chargers": {
+	"enabled": true,
+	"attributes_conns": [
+		{"address": "*internal"},
+	],
+},
+
+"thresholds": {
+	"enabled": true,
+},
+
+"suppliers": {
+	"enabled": true,
+},
+
+"stats": {
+	"enabled": true,
+},
+
+"resources": {
+	"enabled": true,
+},
+
+"cdrs": {
+	"enabled": true,	
+	"chargers_conns":[
+		{"address": "*internal"},
+	],
+},
+
+"sessions": {
+	"enabled": true,
+	"listen_bijson": ":6014",
+	"suppliers_conns": [
+		{"address": "*internal"}
+	],
+	"resources_conns": [
+		{"address": "*internal"}
+	],
+	"attributes_conns": [
+		{"address": "*internal"}
+	],
+	"rals_conns": [
+		{"address": "*internal"}
+	],
+	"chargers_conns": [
+		{"address": "*internal"}
+	],
+	"cdrs_conns": [
+		{"address": "*internal"}
+	],
+},
+
+"apier": {	
+	"caches_conns":[						// connections to CacheS for reloads
+		{"address": "127.0.0.1:6012", "transport": "*json"},
+	],						
+},
+
+}

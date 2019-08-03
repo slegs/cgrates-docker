@@ -1,0 +1,69 @@
+{
+// CGRateS Configuration file
+// Used in multifile configuration tests
+// Should be the first file loaded
+
+"general": {
+	"default_request_type": "*postpaid",				// default request type to consider when missing from requests: <""|*prepaid|*postpaid|*pseudoprepaid|*rated>
+},
+
+"cdre": {
+	"*default": {
+		"content_fields": [								// template of the exported content fields
+			{"tag":"AccId", "cdr_field_id": "accid", "type": "cdrfield", "value": "accid"},
+			{"tag":"ReqType", "cdr_field_id": "reqtype", "type": "cdrfield", "value": "reqtype"},
+			{"tag":"Direction", "cdr_field_id": "direction", "type": "cdrfield", "value": "direction"},
+			{"tag":"Tenant", "cdr_field_id": "tenant", "type": "cdrfield", "value": "tenant"},
+			{"tag":"Category", "cdr_field_id": "category", "type": "cdrfield", "value": "category"},
+			{"tag":"Account", "cdr_field_id": "account", "type": "cdrfield", "value": "account"},
+			{"tag":"Subject", "cdr_field_id": "subject", "type": "cdrfield", "value": "subject"},
+			{"tag":"Destination", "cdr_field_id": "destination", "type": "cdrfield", "value": "destination"},
+			{"tag":"SetupTime", "cdr_field_id": "setup_time", "type": "cdrfield", "value": "setup_time", "layout": "2006-01-02T15:04:05Z07:00"},
+			{"tag":"AnswerTime", "cdr_field_id": "answer_time", "type": "cdrfield", "value": "answer_time", "layout": "2006-01-02T15:04:05Z07:00"},
+			{"tag":"Usage", "cdr_field_id": "usage", "type": "cdrfield", "value": "usage"},
+			{"tag":"Cost", "cdr_field_id": "cost", "type": "cdrfield", "value": "cost"},			
+		],
+	}
+},
+
+"http_agent": [
+	{
+		"id": "conecto1",
+		"url": "/conecto",
+		"sessions_conns": [
+			{"address": "127.0.0.1:2012", "transport": "*json"}
+		],
+		"request_payload":	"*url",
+		"reply_payload":	"*xml",
+		"request_processors": [
+			{
+				"id": "OutboundAUTHDryRun",
+				"filters": [],
+				"tenant": "cgrates.org",
+				"flags": ["*dryrun"],
+				"request_fields":[
+				],
+				"reply_fields":[
+					{"tag": "Allow", "field_id": "response.Allow", "type": "*constant", 
+						"value": "1", "mandatory": true},
+				],
+			},
+			{
+				"id": "OutboundAUTH",
+				"filters": ["*string:~*req.request_type:OutboundAUTH"],
+				"tenant": "cgrates.org",
+				"flags": ["*auth", "*accounts", "*attributes"],
+				"request_fields":[
+					{"tag": "RequestType", "field_id": "RequestType", "type": "*constant", 
+						"value": "*pseudoprepaid", "mandatory": true},	
+				],
+				"reply_fields":[
+					{"tag": "Allow", "field_id": "response.Allow", "type": "*constant", 
+						"value": "1", "mandatory": true},
+				],
+			},
+		],
+	},
+],
+
+}
