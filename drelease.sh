@@ -5,7 +5,7 @@ USERNAME=slegs
 # image name
 IMAGE=cgrates-docker
 # ensure we're up to date
-#git pull
+git pull
 
 # bump version
 docker run --rm -v "$PWD":/app treeder/bump patch
