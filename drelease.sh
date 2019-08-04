@@ -76,16 +76,15 @@ then
 	        docker push $USERNAME/$IMAGE:stable-$VERSION_NO
 
 	else
+                docker tag $USERNAME/$IMAGE:test $USERNAME/$IMAGE:$VERSION_NO
+                # push it
+                docker push $USERNAME/$IMAGE:test
+
 	        docker tag $USERNAME/$IMAGE:dev-$VERSION_NO $USERNAME/$IMAGE:$VERSION_NO
 	        # push it
 	        docker push $USERNAME/$IMAGE:dev-$VERSION_NO
 
-                docker tag $USERNAME/$IMAGE:test $USERNAME/$IMAGE:$VERSION_NO
-                # push it
-                docker push $USERNAME/$IMAGE:test
 	fi
-
-	docker push $USERNAME/$IMAGE:$VERSION_NO
 
 fi
 
