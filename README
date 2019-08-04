@@ -25,8 +25,8 @@ Debian stretch using Cgrates prebuilt deb file http://www.cgrates.org/tmp_pkg/cg
 * `CGRATES_SESSION_ENABLED` with default `false`
 * `CGRATES_CONNS` with default `{"address": "127.0.0.1:2012", "transport": "*json"},`
 
-####SESSION Environment Variables used to construct Kamailio Hostname/Address. 
-Intent is to allow a 1-1 relationship between a Kamailio statefulset pod and a Cgrates session statefulset pod (should have matching number of replicas). Kamailio address is constructed using the variables below. If not using Kubernetes then just use KAMAILIO_NAME (IP/FQDN) and KAMAILIO_EVAPI_PORT.
+###SESSION Environment Variables used to construct Kamailio Hostname/Address. 
+Intent is to allow a 1-1 relationship between a Kamailio statefulset pod and a Cgrates session statefulset pod (should have matching number of replicas). Kamailio address is constructed using the variables below. If not using Kubernetes then just use `KAMAILIO_NAME` (IP/FQDN) and `KAMAILIO_EVAPI_PORT`.
 * `CGRATES_NAME` with default `cgrates`. Primarily used in Kubernetes yaml file to pass name of pod being create to get the ordinal number of the statefulset pod for use in identifying the matching Kamailio pod for the session connection.
 * `KAMAILIO_NAME` with default `kamailio`. In Kubernetes this should be the Kamailio statefulset clustername otherwise IP/FQDN
 * `KAMAILIO_EVAPI_PORT` with default `8448`. Kamailio port listening for evapi from CGRATES
