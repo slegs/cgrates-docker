@@ -6,6 +6,8 @@
 "general": {
        	"node_id":"",
 	"reply_timeout": "5s",
+        "logger": "CGRATES_LOGGER",
+        "log_level": CGRATES_LOG_LEVEL,
 },
 
 
