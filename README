@@ -75,5 +75,5 @@ e.g. These env entries in your statefulset set deploy yaml file for a SESSION cg
               fieldPath: metadata.name
 
 ```
-would construct a kamailio address of `kamailio-test-3.kamailio-test:8448` if CGRATES_NAME returned `cgr-session-test-3`. This will will be updated via sed into the cgrates.json config for the cgrates pod using [start.sh](https://bitbucket.org/slegs/docker-cgrates/src/master/start.sh)
+would construct a kamailio address of `kamailio-test-3.kamailio-test:8448` if CGRATES_NAME returned `cgr-session-test-3`. This gets updated via sed into the cgrates.json config for the cgrates pod using [start.sh](https://bitbucket.org/slegs/docker-cgrates/src/master/start.sh)
 

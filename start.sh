@@ -46,7 +46,7 @@ sed -i 's/CGRATES_LOGGER/'"$CGRATES_LOGGER"'/g' /etc/cgrates/cgrates.json
 
 
 
-#cat the log file to screen
+#cat the cgrates.json file to screen (for debug)
 #cat /etc/cgrates/cgrates.json
 
 #Set versions (if first time launch) 
