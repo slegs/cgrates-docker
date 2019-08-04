@@ -27,6 +27,8 @@ while getopts ":u:i:v:p" opt; do
   esac
 done
 
+echo "Parameters passed to release -u $USERNAME -i $IMAGE -v $VERSION_TYPE -p $TYPE"
+
 #Check Mandatory Options
 if [ "x" == "x$USERNAME" ]; then
   echo "-u docker username is required"
