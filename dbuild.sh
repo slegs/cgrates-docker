@@ -7,7 +7,7 @@ echo "Directory=$PWD"
 TYPE="DEV"
 RUN_BUILD="NO"
 
-while getopts ":u:i:v:t:r" opt; do
+while getopts ":u:i:v:tr" opt; do
   case $opt in
     u) USERNAME="$OPTARG"
     ;;
