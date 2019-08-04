@@ -1,17 +1,20 @@
+#!/bin/bash
+
 #Show the current directory
 echo "Directory=$PWD"
 
 #DEFAULT TO DEV
 TYPE="DEV"
+VERSION_TYPE="patch"
 
 # GET OPTIONS
-while getopts ":u:i:v:s" opt; do
+while getopts ":u:i:v:p" opt; do
   case $opt in
     u) USERNAME="$OPTARG"
     ;;
-    v) NEW_VERSION="$OPTARG"
+    p) TYPE="PROD"
     ;;
-    s) TYPE="RELEASE"
+    v) VERSION_TYPE="$OPTARG"
     ;;
     i) IMAGE="$OPTARG"
     ;;
@@ -39,12 +42,8 @@ fi
 # ensure we're up to date
 git pull
 
-if [ -z "$NEW_VERSION" ];  then
-	# bump version
-	docker run --rm -v "$PWD":/app treeder/bump patch
-else
-	echo "$NEW_VERSION" > VERSION
-fi
+# bump version
+docker run --rm -v "$PWD":/app treeder/bump $VERSION_TYPE 
 
 VERSION_NO=`cat VERSION`
 echo "version: $VERSION_NO"
@@ -52,29 +51,36 @@ echo "version: $VERSION_NO"
 # run build
 ./dbuild.sh -u $USERNAME -i $IMAGE -t $TYPE -v $VERSION_NO
 
-# tag it
-git add -A
-git commit -m "version $VERSION_NO"
-git tag -a "$VERSION_NO" -m "version $VERSION_NO"
-git push
-git push --tags
+if [ $? -eq 0 ]
+then
+
+	# tag it
+	git add -A
+	git commit -m "version $VERSION_NO"
+	git tag -a "$VERSION_NO" -m "version $VERSION_NO"
+	git push
+	git push --tags
 
 
-# if release then push stable and latest else dev
-if [ "$TYPE" == "RELEASE" ] ; then
+	# if release then push stable and latest else dev
+	if [ "$TYPE" == "PROD" ] ; then
 
-	docker tag $USERNAME/$IMAGE:latest $USERNAME/$IMAGE:$VERSION_NO
-	# push it
-	docker push $USERNAME/$IMAGE:latest
+		docker tag $USERNAME/$IMAGE:latest $USERNAME/$IMAGE:$VERSION_NO
+		# push it
+		docker push $USERNAME/$IMAGE:latest
 
-        docker tag $USERNAME/$IMAGE:stable-$VERSION_NO $USERNAME/$IMAGE:$VERSION_NO
-        # push it
-        docker push $USERNAME/$IMAGE:stable-$VERSION_NO
+	        docker tag $USERNAME/$IMAGE:stable-$VERSION_NO $USERNAME/$IMAGE:$VERSION_NO
+	        # push it
+	        docker push $USERNAME/$IMAGE:stable-$VERSION_NO
 
-else
-        docker tag $USERNAME/$IMAGE:dev-$VERSION_NO $USERNAME/$IMAGE:$VERSION_NO
-        # push it
-        docker push $USERNAME/$IMAGE:dev-$VERSION_NO
+	else
+	        docker tag $USERNAME/$IMAGE:dev-$VERSION_NO $USERNAME/$IMAGE:$VERSION_NO
+	        # push it
+	        docker push $USERNAME/$IMAGE:dev-$VERSION_NO
+	fi
+
+	docker push $USERNAME/$IMAGE:$VERSION_NO
+
 fi
 
-docker push $USERNAME/$IMAGE:$VERSION_NO
+exit 0

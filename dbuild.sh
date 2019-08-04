@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #set -ex
 
 #Show the current directory
@@ -7,13 +9,13 @@ echo "Directory=$PWD"
 TYPE="DEV"
 RUN_BUILD="NO"
 
-while getopts ":u:i:v:tr" opt; do
+while getopts ":u:v:t:i:r" opt; do
   case $opt in
     u) USERNAME="$OPTARG"
     ;;
     v) VERSION="$OPTARG"
     ;;
-    t) TYPE="RELEASE"
+    t) TYPE="$OPTARG"
     ;;
     i) IMAGE="$OPTARG"
     ;;
@@ -27,6 +29,8 @@ while getopts ":u:i:v:tr" opt; do
     ;;
   esac
 done
+
+echo "-u $USERNAME -v $VERSION -t $TYPE -i $IMAGE -r $RUN_BUILD"
 
 #Check Mandatory Options
 if [ "x" == "x$USERNAME" ]; then
@@ -62,3 +66,4 @@ else
 
 fi
 
+exit 0
