@@ -5,4 +5,13 @@ USERNAME=slegs
 # image name
 IMAGE=cgrates-docker
 
-docker build -t $USERNAME/$IMAGE:latest .
+if [ "$1" = "RELEASE"] ; then
+
+	docker build -t $USERNAME/$IMAGE:stable -t $USERNAME/$IMAGE:latest .
+
+else
+
+        docker build -t $USERNAME/$IMAGE:dev  .
+
+fi
+
