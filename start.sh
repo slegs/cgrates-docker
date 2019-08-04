@@ -47,7 +47,7 @@ sed -i 's/CGRATES_LOGGER/'"$CGRATES_LOGGER"'/g' /etc/cgrates/cgrates.json
 
 
 #cat the log file to screen
-cat /etc/cgrates/cgrates.json
+#cat /etc/cgrates/cgrates.json
 
 #Set versions (if first time launch) 
 /usr/bin/cgr-migrator -exec=*set_versions -config_path=/etc/cgrates
