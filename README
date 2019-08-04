@@ -1,6 +1,6 @@
 # CGRATES for Docker
 
-Bitbucket repository -> https://bitbucket.org/slegs/docker-cgrates
+[Bitbucket repository](https://bitbucket.org/slegs/docker-cgrates)
 
 Cgrates is an open source telco billing, rating and realtime charging system. See here for more http://www.cgrates.org/
 
@@ -8,38 +8,37 @@ Cgrates docker image based on mongodb backend for datadb and stordb
 
 Debian stretch using Cgrates prebuilt deb file http://www.cgrates.org/tmp_pkg/cgrates_0.9.1~rc8_amd64.deb 
 
-Tags in Docker Hub
-- Latest points to latest stable ( slegs/cgrates-docker:latest )
-- Test points to latest dev which could be broken ( slegs/cgrates-docker:test )
+###Tags in Docker Hub
+*Latest points to latest stable ( slegs/cgrates-docker:latest )
+*Test points to latest dev which could be broken ( slegs/cgrates-docker:test )
 
-Global Config Environment Variables
-- CGRATES_CFG with default RAL. Options currently SESSION and RAL. Copies in config relative to purpose. 
-- MONGO_HOST with default 127.0.0.1 though no Mongo DB server in build so wont work unless this value is set correctly. In Kubernetes pass the full cluster replicaset string  as MONGO_HOST env variable (if using a Mongo DB replicaset). 
-- MONGO_DATADB with default 10
-- MONGO_STORDB with default cgrates
-- CGRATES_LOG_LEVEL with default 1
-- CONTAINER_TZ with default Europe/Dublin
+###Global Config Environment Variables
+*`CGRATES_CFG` with default `RAL`. Options currently `SESSION` and `RAL`. Copies in config relative to purpose. 
+*`MONGO_HOST` with default `127.0.0.1` though no Mongo DB server in build so wont work unless this value is set correctly. In Kubernetes pass the full cluster replicaset string as `MONGO_HOST` env variable (if using a Mongo DB replicaset). 
+*`MONGO_DATADB` with default `10`
+*`MONGO_STORDB` with default `cgrates`
+*`CGRATES_LOG_LEVEL` with default `1`
+*`CONTAINER_TZ` with default `Europe/Dublin`
 
-SESSION Environment Variables
-- CGRATES_KAMAILIO_ENABLED with default false. Used to update config to enable a Cgrates/Kamailio evapi real time rating and control connection.
-- CGRATES_SESSION_ENABLED with default false
-- CGRATES_CONNS with default {"address": "127.0.0.1:2012", "transport": "*json"},
+###SESSION Environment Variables
+*`CGRATES_KAMAILIO_ENABLED` with default `false`. Used to update config to enable a Cgrates/Kamailio evapi real time rating and control connection.
+*`CGRATES_SESSION_ENABLED` with default `false`
+*`CGRATES_CONNS` with default `{"address": "127.0.0.1:2012", "transport": "*json"},`
 
-SESSION Environment Variables used to construct Kamailio Hostname/Address. 
+####SESSION Environment Variables used to construct Kamailio Hostname/Address. 
 Intent is to allow a 1-1 relationship between a Kamailio statefulset pod and a Cgrates session statefulset pod (should have matching number of replicas). Kamailio address is constructed using the variables below. If not using Kubernetes then just use KAMAILIO_NAME (IP/FQDN) and KAMAILIO_EVAPI_PORT.
-- CGRATES_NAME with default cgrates. Primarily used in Kubernetes yaml file to pass name of pod being create to get the ordinal number of the statefulset pod for use in identifying the matching Kamailio pod for the session connection.
-- KAMAILIO_NAME with default kamailio. In Kubernetes this should be the Kamailio statefulset clustername otherwise IP/FQDN
-- KAMAILIO_EVAPI_PORT with default 8448. Kamailio port listening for evapi from CGRATES
-- KAMAILIO_SUFFIX with default empty string. Used to tag cluster dns suffix to end of constructed hostname usually in format .cluster-name. If empty will have no effect.
+*CGRATES_NAME with default cgrates. Primarily used in Kubernetes yaml file to pass name of pod being create to get the ordinal number of the statefulset pod for use in identifying the matching Kamailio pod for the session connection.
+*KAMAILIO_NAME with default kamailio. In Kubernetes this should be the Kamailio statefulset clustername otherwise IP/FQDN
+*KAMAILIO_EVAPI_PORT with default 8448. Kamailio port listening for evapi from CGRATES
+*KAMAILIO_SUFFIX with default empty string. Used to tag cluster dns suffix to end of constructed hostname usually in format .cluster-name. If empty will have no effect.
 
 e.g. These entries in your statefulset set deploy file for a SESSION cgrates engine
-- CGRATES_CFG="SESSION"
-- CGRATES_NAME="cgrates-session-statefulset-3"
-- KAMAILIO_NAME="kamailio-statefulset"
-- KAMAILIO_EVAPI_PORT="8448"
-- KAMAILIO-SUFFIX=".kamailio-statefulset"
-
-would construct a kamailio address of
-kamailio-statefulset-3.kamailio-statefulset:8448 
-which will be updated via sed into the cgrates.json config for the cgrates pod
+```
+*CGRATES_CFG="SESSION"
+*CGRATES_NAME="cgrates-session-statefulset-3"
+*KAMAILIO_NAME="kamailio-statefulset"
+*KAMAILIO_EVAPI_PORT="8448"
+*KAMAILIO-SUFFIX=".kamailio-statefulset"
+```
+would construct a kamailio address of `kamailio-statefulset-3.kamailio-statefulset:8448` which will be updated via sed into the cgrates.json config for the cgrates pod
 
