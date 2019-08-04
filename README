@@ -4,8 +4,8 @@
 
 Cgrates is a telco billing, rating and realtime charging system built in the Go language. It is very fast and flexible. See below for more 
 
-http://www.cgrates.org/
-https://cgrates.readthedocs.io/en/latest/
+* [Main website](http://www.cgrates.org/)
+* [Wiki](https://cgrates.readthedocs.io/en/latest/)
 
 Cgrates docker image based on mongodb backend for datadb and stordb. Based on Debian stretch using Cgrates prebuilt deb file http://www.cgrates.org/tmp_pkg/cgrates_0.9.1~rc8_amd64.deb 
 
