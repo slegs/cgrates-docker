@@ -49,7 +49,7 @@ if [ "x" == "x$VERSION" ]; then
 fi
 
 
-if [ "$TYPE" == "RELEASE" ] ; then
+if [ "$TYPE" == "PROD" ] ; then
 
 	docker build -t $USERNAME/$IMAGE:stable-$VERSION -t $USERNAME/$IMAGE:latest .
 
