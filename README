@@ -39,11 +39,40 @@ Intent is to allow a 1-1 relationship between a Kamailio statefulset pod and a C
 
 e.g. These entries in your statefulset set deploy file for a SESSION cgrates engine
 ```
-CGRATES_CFG="SESSION"
-CGRATES_NAME="cgrates-session-statefulset-3"
-KAMAILIO_NAME="kamailio-statefulset"
-KAMAILIO_EVAPI_PORT="8448"
-KAMAILIO-SUFFIX=".kamailio-statefulset"
+        env:
+        - name: CGRATES_CONFIG
+          value: "SESSION"                                      # RAL OR SESSION
+        - name: MONGO_HOST
+          value: "mongo-mongodb-replicaset-0.mongo-mongodb-replicaset,mongo-mongodb-replicaset-1.mongo-mongodb-replicaset,mongo-mongodb-replicaset-2.mongo-mongodb-replicaset"
+        - name: MONGO_DATADB
+          value: "cgrates-datadb-test"
+        - name: MONGO_STORDB
+          value: "cgrates-stordb-test"
+        - name: CGRATES_KAMAILIO_ENABLED                        # ENABLE EVAPI - default false
+          value: "true"
+        - name: KAMAILIO_NAME                                   # KAMAILIO SERVER NAME
+          value: "kamailio-test"
+        - name: KAMAILIO_EVAPI_PORT                             # EVAPI PORT TO LISTEN ON - default 8448
+          value: "8448"
+        - name: KAMAILIO_SUFFIX                                 # KAMAILIO CLUSTER
+          value: ".kamailio-test"
+        - name: CGRATES_SESSION_ENABLED                         # ENABLE SESSION - default false
+          value: "true"
+        - name: CGRATES_CONNS                                   # REMOTE RALS - default local address
+          value: '{"address": "cgr-ral-test-0.cgr-ral-test:2012", "transport": "*json"},{"address": "cgr-ral-test-1.cgr-ral-test:2012", "transport": "*json"},{"address": "cgr-ral-test-2.cgr-ral-test:2012", "transport": "*json"},'
+        - name: CGRATES_LOGGER                                  #Optional - *stdout
+          value: "*stdout"
+        - name: CGRATES_LOG_LEVEL                               #Optional - default 1
+          value: "7"
+        - name: CGRATES_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: CGRATES_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+
 ```
-would construct a kamailio address of `kamailio-statefulset-3.kamailio-statefulset:8448` which will be updated via sed into the cgrates.json config for the cgrates pod
+would construct a kamailio address of `kamailio-test-3.kamailio-test:8448` if CGRATES_NAME returned `cgr-session-test-3`. This will will be updated via sed into the cgrates.json config for the cgrates pod using [start.sh](https://bitbucket.org/slegs/docker-cgrates/src/master/start.sh)
 
