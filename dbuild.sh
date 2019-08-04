@@ -59,7 +59,7 @@ if [ "$TYPE" == "PROD" ] ; then
 
 else
 
-        docker build -t $USERNAME/$IMAGE:dev-$VERSION  .
+        docker build -t $USERNAME/$IMAGE:dev-$VERSION  -t $USERNAME/$IMAGE:test .
         if [ "$RUN_BUILD" == "YES" ] ; then
 	        docker run $USERNAME/$IMAGE:dev-$VERSION
 	fi
