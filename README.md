@@ -1,6 +1,6 @@
 # CGRATES for Docker
 
-[Bitbucket repository](https://bitbucket.org/slegs/docker-cgrates)
+[Github repository](https://github.com/slegs/cgrates-docker)
 
 Cgrates is a telco billing, rating and realtime charging system built in the Go language. It is very fast and flexible. See below for more 
 
