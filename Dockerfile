@@ -2,6 +2,13 @@ FROM debian:stretch
 MAINTAINER slegs
 
 #environment variables
+
+# Important! Update this no-op ENV variable when this Dockerfile
+# is updated with the current date. It will force refresh of all
+# of the base images and things like 'apt-get update' won't be using
+# old cached versions when the Dockerfile is built.
+ENV REFRESHED_AT 2019-08-05
+
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 ENV MONGO_HOST ${MONGO_HOST:-127.0.0.1}
@@ -18,6 +25,9 @@ ENV CGRATES_NAME ${CGRATES_NAME:-cgrates}
 ENV CGRATES_IP ${CGRATES_IP:-127.0.0.1}
 ENV CGRATES_SESSION_ENABLED ${CGRATES_SESSION_ENABLED:-false}
 ENV CGRATES_CONNS ${CGRATES_CONNS}
+
+#Label description into image
+LABEL description="Runs CGRATES in a Docker container with option to copy in config and adjust via environment valriables and sed"
 
 #Set Timezone
 ENV TZ=${CONTAINER_TZ:-Europe/Dublin}
@@ -42,7 +52,7 @@ COPY start.sh /opt/start.sh
 RUN chmod +x /opt/start.sh
 
 #Expose ports
-EXPOSE 2012 
+EXPOSE 2012
 EXPOSE 2013
 EXPOSE 2080
 

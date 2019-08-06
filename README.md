@@ -1,13 +1,14 @@
 # CGRATES for Docker
 
-[Github repository](https://github.com/slegs/cgrates-docker)
+Stable Version=
+Dev Version=
 
-Cgrates is a telco billing, rating and realtime charging system built in the Go language. It is very fast and flexible. See below for more 
+Cgrates is a telco billing, rating and realtime charging system built in the Go language. It is very fast and flexible. See below for more
 
 * [Main website](http://www.cgrates.org/)
 * [Wiki](https://cgrates.readthedocs.io/en/latest/)
 
-Cgrates docker image based on mongodb backend for datadb and stordb. Based on Debian stretch using Cgrates prebuilt deb file http://www.cgrates.org/tmp_pkg/cgrates_0.9.1~rc8_amd64.deb 
+Cgrates docker image based on mongodb backend for datadb and stordb. Based on Debian stretch using Cgrates prebuilt deb file http://www.cgrates.org/tmp_pkg/cgrates_0.9.1~rc8_amd64.deb
 
 ### Tags in Docker Hub
 
@@ -16,8 +17,8 @@ Cgrates docker image based on mongodb backend for datadb and stordb. Based on De
 
 ### Global Config Environment Variables
 
-* `CGRATES_CFG` with default `RAL`. Options currently `SESSION` and `RAL`. Copies in config relative to purpose. 
-* `MONGO_HOST` with default `127.0.0.1` though no Mongo DB server in build so wont work unless this value is set correctly. In Kubernetes pass the full cluster replicaset string as `MONGO_HOST` env variable (if using a Mongo DB replicaset). 
+* `CGRATES_CFG` with default `RAL`. Options currently `SESSION` and `RAL`. Copies in config relative to purpose.
+* `MONGO_HOST` with default `127.0.0.1` though no Mongo DB server in build so wont work unless this value is set correctly. In Kubernetes pass the full cluster replicaset string as `MONGO_HOST` env variable (if using a Mongo DB replicaset).
 * `MONGO_DATADB` with default `10`
 * `MONGO_STORDB` with default `cgrates`
 * `CGRATES_LOG_LEVEL` with default `1`
@@ -29,7 +30,7 @@ Cgrates docker image based on mongodb backend for datadb and stordb. Based on De
 * `CGRATES_SESSION_ENABLED` with default `false`
 * `CGRATES_CONNS` with default `{"address": "127.0.0.1:2012", "transport": "*json"},`
 
-#### SESSION Environment Variables used to construct Kamailio Hostname/Address. 
+#### SESSION Environment Variables used to construct Kamailio Hostname/Address.
 
 Intent is to allow a 1-1 relationship between a Kamailio statefulset pod and a Cgrates session statefulset pod (should have matching number of replicas). Kamailio address is constructed using the variables below. If not using Kubernetes then just use `KAMAILIO_NAME` (IP/FQDN) and `KAMAILIO_EVAPI_PORT`.
 
@@ -76,4 +77,3 @@ e.g. These env entries in your statefulset set deploy yaml file for a SESSION cg
 
 ```
 would construct a kamailio address of `kamailio-test-3.kamailio-test:8448` if CGRATES_NAME returned `cgr-session-test-3`. This gets updated via sed into the cgrates.json config for the cgrates pod using [start.sh](https://bitbucket.org/slegs/docker-cgrates/src/master/start.sh)
-
