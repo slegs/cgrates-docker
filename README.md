@@ -1,7 +1,9 @@
 # CGRATES for Docker
 
+```
 Stable Version=stable-2.7.8
-Dev Version=dev-2.7.7
+Dev Version=dev-2.7.9
+```
 
 Cgrates is a telco billing, rating and realtime charging system built in the Go language. It is very fast and flexible. See below for more
 
