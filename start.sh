@@ -5,22 +5,12 @@ if [ "${CGRATES_CONFIG}" = "SESSION" ]; then
 	#copy the session config
 	cp /opt/cgrates-cfg-files/cgrates-session.json /etc/cgrates/cgrates.json
 
-	#Get ordinal of statefulset pod and add a - in front. If no number then just leave blank
-	ORDINAL=${CGRATES_NAME##*-}
-
-	re='^[0-9]+$'
-	if  ! [[ $ORDINAL =~ $re ]]; then
-	        ORDINAL=""
-	else
-	        ORDINAL="-$ORDINAL"
-	fi
-
         #Update kamailio evapi values in cgrates.json
 	sed -i 's/CGRATES_KAMAILIO_ENABLED/'"$CGRATES_KAMAILIO_ENABLED"'/g' /etc/cgrates/cgrates.json
-	sed -i 's/CGRATES_KAMAILIO_ADDRESS/'"$KAMAILIO_NAME""$ORDINAL""$KAMAILIO_SUFFIX"':'"$KAMAILIO_EVAPI_PORT"'/g' /etc/cgrates/cgrates.json
+	sed -i 's/CGRATES_KAMAILIO_EVAPI_PORT/'"$CGRATES_KAMAILIO_EVAPI_PORT"'/g' /etc/cgrates/cgrates.json
 
-        #Update RALS values for remote raters in cgrates.json
-        sed -i 's/CGRATES_SESSION_ENABLED/'"$CGRATES_SESSION_ENABLED"'/g' /etc/cgrates/cgrates.json
+  #Update RALS values for remote raters in cgrates.json
+  sed -i 's/CGRATES_SESSION_ENABLED/'"$CGRATES_SESSION_ENABLED"'/g' /etc/cgrates/cgrates.json
 	if [ -z "$CGRATES_CONNS" ];  then
 	        sed -i 's/CGRATES_CONNS/{"address": "127.0.0.1:2012", "transport": "*json"},/g' /etc/cgrates/cgrates.json
 
@@ -49,8 +39,8 @@ sed -i 's/CGRATES_LOGGER/'"$CGRATES_LOGGER"'/g' /etc/cgrates/cgrates.json
 #cat the cgrates.json file to screen (for debug)
 #cat /etc/cgrates/cgrates.json
 
-#Set versions (if first time launch) 
+#Set versions (if first time launch)
 /usr/bin/cgr-migrator -exec=*set_versions -config_path=/etc/cgrates
 
-#Start cgr-engine 
+#Start cgr-engine
 /usr/bin/cgr-engine -config_path=/etc/cgrates

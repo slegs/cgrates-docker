@@ -4,7 +4,7 @@
 On Docker Hub
 
 slegs/cgrates-docker:latest is stable-2.7.8
-slegs/cgrates-docker:test is dev-2.7.13
+slegs/cgrates-docker:test is dev-2.7.15
 
 ```
 
@@ -31,54 +31,9 @@ Cgrates docker image based on mongodb backend for datadb and stordb. Based on De
 
 ### SESSION Environment Variables
 
+In SESSION type, if pairing with a Kamailio then deply as a pair of containers in your K8S deploy yaml. Each pair of Kamailio and CGRates SESSION containers will have 1-1 connection on port supplied below on the Pod localhost network.
+
 * `CGRATES_KAMAILIO_ENABLED` with default `false`. Used to update config to enable a Cgrates/Kamailio evapi real time rating and control connection.
+* `CGRATES_KAMAILIO_EVAPI` with default `8448`. Used to update config to enable a Cgrates/Kamailio evapi real time rating and control connection.
 * `CGRATES_SESSION_ENABLED` with default `false`
 * `CGRATES_CONNS` with default `{"address": "127.0.0.1:2012", "transport": "*json"},`
-
-#### SESSION Environment Variables used to construct Kamailio Hostname/Address.
-
-Intent is to allow a 1-1 relationship between a Kamailio statefulset pod and a Cgrates session statefulset pod (should have matching number of replicas). Kamailio address is constructed using the variables below. If not using Kubernetes then just use `KAMAILIO_NAME` (IP/FQDN) and `KAMAILIO_EVAPI_PORT`.
-
-* `CGRATES_NAME` with default `cgrates`. Primarily used in Kubernetes yaml file to pass name of pod being create to get the ordinal number of the statefulset pod for use in identifying the matching Kamailio pod for the session connection.
-* `KAMAILIO_NAME` with default `kamailio`. In Kubernetes this should be the Kamailio statefulset clustername otherwise IP/FQDN
-* `KAMAILIO_EVAPI_PORT` with default `8448`. Kamailio port listening for evapi from CGRATES
-* `KAMAILIO_SUFFIX` with default empty string. Used to tag cluster dns suffix to end of constructed hostname usually in format `.cluster-name`. If empty will have no effect.
-
-e.g. These env entries in your statefulset set deploy yaml file for a SESSION cgrates engine
-```
-        env:
-        - name: CGRATES_CONFIG
-          value: "SESSION"                                      # RAL OR SESSION
-        - name: MONGO_HOST
-          value: "mongo-mongodb-replicaset-0.mongo-mongodb-replicaset,mongo-mongodb-replicaset-1.mongo-mongodb-replicaset,mongo-mongodb-replicaset-2.mongo-mongodb-replicaset"
-        - name: MONGO_DATADB
-          value: "cgrates-datadb-test"
-        - name: MONGO_STORDB
-          value: "cgrates-stordb-test"
-        - name: CGRATES_KAMAILIO_ENABLED                        # ENABLE EVAPI - default false
-          value: "true"
-        - name: KAMAILIO_NAME                                   # KAMAILIO SERVER NAME
-          value: "kamailio-test"
-        - name: KAMAILIO_EVAPI_PORT                             # EVAPI PORT TO LISTEN ON - default 8448
-          value: "8448"
-        - name: KAMAILIO_SUFFIX                                 # KAMAILIO CLUSTER
-          value: ".kamailio-test"
-        - name: CGRATES_SESSION_ENABLED                         # ENABLE SESSION - default false
-          value: "true"
-        - name: CGRATES_CONNS                                   # REMOTE RALS - default local address
-          value: '{"address": "cgr-ral-test-0.cgr-ral-test:2012", "transport": "*json"},{"address": "cgr-ral-test-1.cgr-ral-test:2012", "transport": "*json"},{"address": "cgr-ral-test-2.cgr-ral-test:2012", "transport": "*json"},'
-        - name: CGRATES_LOGGER                                  #Optional - *stdout
-          value: "*stdout"
-        - name: CGRATES_LOG_LEVEL                               #Optional - default 1
-          value: "7"
-        - name: CGRATES_IP
-          valueFrom:
-            fieldRef:
-              fieldPath: status.podIP
-        - name: CGRATES_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.name
-
-```
-would construct a kamailio address of `kamailio-test-3.kamailio-test:8448` if CGRATES_NAME returned `cgr-session-test-3`. This gets updated via sed into the cgrates.json config for the cgrates pod using [start.sh](https://bitbucket.org/slegs/docker-cgrates/src/master/start.sh)
