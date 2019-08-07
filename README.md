@@ -3,7 +3,7 @@
 ```
 On Docker Hub
 
-slegs/cgrates-docker:latest is stable-2.8.0
+slegs/cgrates-docker:latest is stable-2.9.0
 slegs/cgrates-docker:test is dev-2.8.2
 
 ```
@@ -31,7 +31,7 @@ Cgrates docker image based on mongodb backend for datadb and stordb. Based on De
 
 ### SESSION Environment Variables
 
-In SESSION type, if pairing with a Kamailio in Kubernetes then deploy both Kamailio and CGRATES SESSION as a pair of containers in your deploy yaml. Each pair of containers will have 1-1 connection on port supplied below on the Pod using the default localhost address `127.0.0.1`. If using a remote Kamailio just specify the remote host address (IP/FQDN)
+In SESSION type, if pairing with a Kamailio in Kubernetes then deploy both Kamailio and CGRates SESSION as a pair of containers in your deploy yaml. Each pair of containers will have 1-1 connection on port supplied below on the Pod using the default localhost address `127.0.0.1`. If using a remote Kamailio just specify the remote host address (IP/FQDN)
 
 * `CGRATES_KAMAILIO_ENABLED` with default `false`. Used to update config to enable a Cgrates/Kamailio evapi real time rating and control connection.
 * `CGRATES_KAMAILIO_EVAPI_HOST` with default `127.0.0.1`
