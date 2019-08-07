@@ -4,7 +4,7 @@
 On Docker Hub
 
 slegs/cgrates-docker:latest is stable-2.7.8
-slegs/cgrates-docker:test is dev-2.7.17
+slegs/cgrates-docker:test is dev-2.7.18
 
 ```
 
@@ -31,9 +31,15 @@ Cgrates docker image based on mongodb backend for datadb and stordb. Based on De
 
 ### SESSION Environment Variables
 
-In SESSION type, if pairing with a Kamailio then deply as a pair of containers in your K8S deploy yaml. Each pair of Kamailio and CGRates SESSION containers will have 1-1 connection on port supplied below on the Pod localhost network.
+In SESSION type, if pairing with a Kamailio then deploy as a pair of containers in your K8S deploy yaml. Each pair of Kamailio and CGRates SESSION containers will have 1-1 connection on port supplied below on the Pod localhost network.
 
 * `CGRATES_KAMAILIO_ENABLED` with default `false`. Used to update config to enable a Cgrates/Kamailio evapi real time rating and control connection.
-* `CGRATES_KAMAILIO_EVAPI` with default `8448`. Used to update config to enable a Cgrates/Kamailio evapi real time rating and control connection.
+* `CGRATES_KAMAILIO_EVAPI_PORT` with default `8448`. Used to update config to enable a Cgrates/Kamailio evapi real time rating and control connection.
 * `CGRATES_SESSION_ENABLED` with default `false`
-* `CGRATES_CONNS` with default `{"address": "127.0.0.1:2012", "transport": "*json"},`
+* `CGRATES_CONNS` with default `{"address": "127.0.0.1:2012", "transport": "*json"},`. Change to full string for a RAL stateful set as in example below if applicable
+
+```
+- name: CGRATES_CONNS					
+  value: '{"address": "cgr-ral-test-0.cgr-ral-test:2012", "transport": "*json"},{"address": "cgr-ral-test-1.cgr-ral-test:2012", "transport": "*json"},{"address": "cgr-ral-test-2.cgr-ral-test:2012", "transport": "*json"},'
+
+```
