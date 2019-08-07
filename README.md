@@ -3,7 +3,7 @@
 ```
 On Docker Hub
 
-slegs/cgrates-docker:latest is stable-2.7.8
+slegs/cgrates-docker:latest is stable-2.8.0
 slegs/cgrates-docker:test is dev-2.7.18
 
 ```
