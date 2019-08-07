@@ -7,6 +7,7 @@ if [ "${CGRATES_CONFIG}" = "SESSION" ]; then
 
         #Update kamailio evapi values in cgrates.json
 	sed -i 's/CGRATES_KAMAILIO_ENABLED/'"$CGRATES_KAMAILIO_ENABLED"'/g' /etc/cgrates/cgrates.json
+	sed -i 's/CGRATES_KAMAILIO_EVAPI_HOST/'"$CGRATES_KAMAILIO_EVAPI_HOST"'/g' /etc/cgrates/cgrates.json
 	sed -i 's/CGRATES_KAMAILIO_EVAPI_PORT/'"$CGRATES_KAMAILIO_EVAPI_PORT"'/g' /etc/cgrates/cgrates.json
 
   #Update RALS values for remote raters in cgrates.json
