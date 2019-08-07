@@ -3,7 +3,7 @@
 ```
 On Docker Hub
 
-slegs/cgrates-docker:latest is stable-2.9.0
+slegs/cgrates-docker:latest is stable-2.8.0
 slegs/cgrates-docker:test is dev-2.8.2
 
 ```
@@ -13,7 +13,7 @@ Cgrates is a telco billing, rating and realtime charging system built in the Go 
 * [Main website](http://www.cgrates.org/)
 * [Wiki](https://cgrates.readthedocs.io/en/latest/)
 
-Cgrates docker image based on mongodb backend for datadb and stordb. Based on Debian stretch using Cgrates prebuilt deb file http://www.cgrates.org/tmp_pkg/cgrates_0.9.1~rc8_amd64.deb
+Cgrates docker image based on mongodb backend for datadb and stordb. Based on Debian stretch using Cgrates prebuilt deb file http://www.cgrates.org/tmp_pkg/cgrates_0.9.1~rc8%2B20190806152614%2Be7ec60e7f_amd64.deb
 
 ### Tags in Docker Hub
 
