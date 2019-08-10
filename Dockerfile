@@ -35,17 +35,15 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get -y update && apt-get -y install git sudo wget nano mongodb-clients rsyslog ngrep curl
 
 # install cgrates
-#http://www.cgrates.org/tmp_pkg/cgrates_0.9.1~rc8%2B20190806152614%2Be7ec60e7f_amd64.deb
-#RUN wget -O /tmp/cgrates.deb http://www.cgrates.org/tmp_pkg/cgrates_0.9.1~rc8_amd64.deb
-RUN wget -O /tmp/cgrates.deb http://www.cgrates.org/tmp_pkg/cgrates_0.9.1~rc8%2B20190806152614%2Be7ec60e7f_amd64.deb
-
-RUN dpkg -i /tmp/cgrates.deb
+#Copy deb file into image - downloaded locally as sometimes changes on server
+COPY cgrates_0.9.1~rc8.deb /tmp/cgrates_0.9.1~rc8.deb
+RUN dpkg -i /tmp/cgrates_0.9.1~rc8.deb
 
 #tidy up
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 #Copy our config files into image
-RUN mkdir /opt/cgrates-cfg-files
+RUN mkdir -p /opt/cgrates-cfg-files
 COPY config/cgrates*.json /opt/cgrates-cfg-files/
 
 #Copy startfile into image
