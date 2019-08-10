@@ -36,6 +36,7 @@ In SESSION type, if pairing with a Kamailio in Kubernetes then deploy both Kamai
 * `CGRATES_KAMAILIO_ENABLED` with default `false`. Used to update config to enable a Cgrates/Kamailio evapi real time rating and control connection.
 * `CGRATES_KAMAILIO_EVAPI_HOST` with default `127.0.0.1`
 * `CGRATES_KAMAILIO_EVAPI_PORT` with default `8448`
+* `CGRATES_DISPATCHER_ENABLED` with default `false`
 * `CGRATES_SESSION_ENABLED` with default `false`
 * `CGRATES_CONNS` with default `{"address": "127.0.0.1:2012", "transport": "*json"},`. For Kubernetes, change to full string for each pod in a RAL statefulset as in example below
 

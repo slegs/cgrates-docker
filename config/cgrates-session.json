@@ -25,9 +25,9 @@
         "db_port": 27017,
 },
 
-"dispatchers":{								// DispatcherS config
-	"enabled": CGRATES_DISPATCHER_ENABLED,						// starts DispatcherS service: <true|false>.
-	"indexed_selects":true,					// enable profile matching exclusively on indexes
+"dispatchers":{
+	"enabled": CGRATES_DISPATCHER_ENABLED,
+	"indexed_selects":true,
 },
 
 "sessions": {
@@ -65,7 +65,7 @@
 "kamailio_agent": {
         "enabled": CGRATES_KAMAILIO_ENABLED,
         "evapi_conns":[
-                {"address": "CGRATES_KAMAILIO_EVAPI_HOST:CGRATES_KAMAILIO_EVAPI_PORT", "reconnects": 10}
+                {"address": "CGRATES_KAMAILIO_ADDRESS", "reconnects": 10}
         ],
         "sessions_conns": [
                 {"address": "*internal"},
