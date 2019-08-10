@@ -19,8 +19,9 @@ if [ "${CGRATES_CONFIG}" = "SESSION" ]; then
 	sed -i 's/CGRATES_KAMAILIO_ENABLED/'"$CGRATES_KAMAILIO_ENABLED"'/g' /etc/cgrates/cgrates.json
 	sed -i 's/CGRATES_KAMAILIO_ADDRESS/'"$KAMAILIO_NAME""$ORDINAL""$KAMAILIO_SUFFIX"':'"$KAMAILIO_EVAPI_PORT"'/g' /etc/cgrates/cgrates.json
 
-        #Update RALS values for remote raters in cgrates.json
-        sed -i 's/CGRATES_SESSION_ENABLED/'"$CGRATES_SESSION_ENABLED"'/g' /etc/cgrates/cgrates.json
+  #Update RALS values for remote raters in cgrates.json
+	sed -i 's/CGRATES_DISPATCHER_ENABLED/'"$CGRATES_DISPATCHER_ENABLED"'/g' /etc/cgrates/cgrates.json
+	sed -i 's/CGRATES_SESSION_ENABLED/'"$CGRATES_SESSION_ENABLED"'/g' /etc/cgrates/cgrates.json
 	if [ -z "$CGRATES_CONNS" ];  then
 	        sed -i 's/CGRATES_CONNS/{"address": "127.0.0.1:2012", "transport": "*json"},/g' /etc/cgrates/cgrates.json
 
@@ -49,8 +50,8 @@ sed -i 's/CGRATES_LOGGER/'"$CGRATES_LOGGER"'/g' /etc/cgrates/cgrates.json
 #cat the cgrates.json file to screen (for debug)
 #cat /etc/cgrates/cgrates.json
 
-#Set versions (if first time launch) 
+#Set versions (if first time launch)
 /usr/bin/cgr-migrator -exec=*set_versions -config_path=/etc/cgrates
 
-#Start cgr-engine 
+#Start cgr-engine
 /usr/bin/cgr-engine -config_path=/etc/cgrates

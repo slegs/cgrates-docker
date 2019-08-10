@@ -32,6 +32,7 @@ Cgrates docker image based on mongodb backend for datadb and stordb. Based on De
 ### SESSION Environment Variables
 
 * `CGRATES_KAMAILIO_ENABLED` with default `false`. Used to update config to enable a Cgrates/Kamailio evapi real time rating and control connection.
+* `CGRATES_DISPATCHER_ENABLED` with default `false`. Used to update config to enable CGrates to operater a load balancer DISPATCHER module. Can be used with in same engine as SESSION or independently behind a SESSION.
 * `CGRATES_SESSION_ENABLED` with default `false`
 * `CGRATES_CONNS` with default `{"address": "127.0.0.1:2012", "transport": "*json"},`
 
