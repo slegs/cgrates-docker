@@ -65,7 +65,7 @@
 "kamailio_agent": {
         "enabled": CGRATES_KAMAILIO_ENABLED,
         "evapi_conns":[
-                {"address": "CGRATES_KAMAILIO_ADDRESS", "reconnects": 10}
+                {"address": "CGRATES_KAMAILIO_EVAPI_HOST:CGRATES_KAMAILIO_EVAPI_PORT", "reconnects": 10}
         ],
         "sessions_conns": [
                 {"address": "*internal"},
