@@ -39,8 +39,8 @@ RUN apt-get -y update && apt-get -y install git sudo wget nano mongodb-clients r
 #COPY cgrates_0.9.1~rc8.deb /tmp/cgrates_0.9.1~rc8.deb
 #RUN dpkg -i /tmp/cgrates_0.9.1~rc8.deb
 
-#Download latest CGRATES
-RUN wget http://www.cgrates.org/tmp_pkg/cgrates_current_amd64.deb \
+#Download latest STABLE CGRATES
+RUN wget http://www.cgrates.org/v0.10/cgrates_current_amd64.deb \
 && dpkg -i cgrates_current_amd64.deb
 
 #tidy up
