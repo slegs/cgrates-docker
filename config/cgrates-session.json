@@ -39,22 +39,22 @@
 		CGRATES_CONNS
 	],
 	"resources_conns": [
-                CGRATES_CONNS
+    CGRATES_CONNS
 	],
 	"suppliers_conns": [
-                CGRATES_CONNS
+    CGRATES_CONNS
 	],
 	"attributes_conns": [
-                CGRATES_CONNS
+    CGRATES_CONNS
 	],
 	"stats_conns": [
-                CGRATES_CONNS
+    CGRATES_CONNS
 	],
 	"thresholds_conns": [
-                CGRATES_CONNS
+    CGRATES_CONNS
 	],
 	"chargers_conns": [
-                CGRATES_CONNS
+    CGRATES_CONNS
 	],
 	"store_session_costs": true,
 	"debit_interval": "5s",
@@ -68,7 +68,7 @@
                 {"address": "CGRATES_KAMAILIO_EVAPI_HOST:CGRATES_KAMAILIO_EVAPI_PORT", "reconnects": 10}
         ],
         "sessions_conns": [
-                {"address": "*internal"},
+                "*internal",
         ],
         "create_cdr": true,
 },
