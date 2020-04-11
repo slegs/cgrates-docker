@@ -4,7 +4,7 @@
 On Docker Hub
 
 slegs/cgrates-docker:latest is stable-2.10.0
-slegs/cgrates-docker:test is dev-2.14.0
+slegs/cgrates-docker:test is dev-2.15.0
 
 ```
 

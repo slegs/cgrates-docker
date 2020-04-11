@@ -41,10 +41,10 @@
 "rals": {
 	"enabled": true,
 	"thresholds_conns": [
-		"127.0.0.1:2012",
+    "*internal",
 	],
 	"stats_conns": [
-    "127.0.0.1:2012",
+    "*internal",
 	],
 },
 
@@ -52,7 +52,7 @@
 "cdrs": {
 	"enabled": true,
 	"stats_conns": [
-    "127.0.0.1:2012",
+    "*internal",
 	],
 	"sessions_cost_retries": 5,
 },
