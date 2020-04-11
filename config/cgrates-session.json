@@ -30,37 +30,20 @@
 	"indexed_selects":true,
 },
 
+
 "sessions": {
 	"enabled": CGRATES_SESSION_ENABLED,
-	"rals_conns": [
-		CGRATES_CONNS
-	],
-	"cdrs_conns": [
-		CGRATES_CONNS
-	],
-	"resources_conns": [
-    CGRATES_CONNS
-	],
-	"suppliers_conns": [
-    CGRATES_CONNS
-	],
-	"attributes_conns": [
-    CGRATES_CONNS
-	],
-	"stats_conns": [
-    CGRATES_CONNS
-	],
-	"thresholds_conns": [
-    CGRATES_CONNS
-	],
-	"chargers_conns": [
-    CGRATES_CONNS
-	],
-	"store_session_costs": true,
+	"rals_conns": [CGRATES_CONNS],
+	"cdrs_conns": [CGRATES_CONNS],
+	"resources_conns": [CGRATES_CONNS],
+	"suppliers_conns": [CGRATES_CONNS],
+	"attributes_conns": [CGRATES_CONNS],
+	"stats_conns": [CGRATES_CONNS],
+	"thresholds_conns": [CGRATES_CONNS],
+	"chargers_conns": [CGRATES_CONNS],
 	"debit_interval": "5s",
-	"channel_sync_interval":"2m",
+	"channel_sync_interval":"7s",
 },
-
 
 "kamailio_agent": {
         "enabled": CGRATES_KAMAILIO_ENABLED,
