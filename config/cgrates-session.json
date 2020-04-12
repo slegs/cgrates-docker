@@ -26,22 +26,26 @@
 },
 
 "rpc_conns": {
-	"ralconn": {
+	"firstconn": {
 		"strategy": "*first",
+		"conns": [CGRATES_CONNS],
+	},
+  "allconn": {
+		"strategy": "*broadcast",
 		"conns": [CGRATES_CONNS],
 	},
 },
 
 "sessions": {
 	"enabled": CGRATES_SESSION_ENABLED,
-	"rals_conns": ["ralconn"],
-	"cdrs_conns": ["ralconn"],
-	"resources_conns": ["ralconn"],
-	"suppliers_conns": ["ralconn"],
-	"attributes_conns": ["ralconn"],
-	"stats_conns": ["ralconn"],
-	"thresholds_conns": ["ralconn"],
-	"chargers_conns": ["ralconn"],
+	"rals_conns": ["firstconn"],
+	"cdrs_conns": ["firstconn"],
+	"resources_conns": ["firstconn"],
+	"suppliers_conns": ["firstconn"],
+	"attributes_conns": ["firstconn"],
+	"stats_conns": ["firstconn"],
+	"thresholds_conns": ["firstconn"],
+	"chargers_conns": ["firstconn"],
 	"debit_interval": "5s",
 	"channel_sync_interval":"7s",
 },
@@ -52,6 +56,5 @@
         "sessions_conns": ["*internal"],
         "create_cdr": true,
 },
-
 
 }

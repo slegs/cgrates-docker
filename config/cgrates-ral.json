@@ -104,5 +104,9 @@
 	"string_indexed_fields": ["Account"],
 },
 
+"apiers": {
+	"enabled": true,
+	"scheduler_conns": ["*internal"],
+},
 
 }
