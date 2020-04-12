@@ -104,4 +104,11 @@
 	"string_indexed_fields": ["Account"],
 },
 
+ "apiers": {
+	"enabled": true,
+	"caches_conns":["*internal"],
+	"scheduler_conns": ["*internal"],
+	"attributes_conns": ["*internal"],
+},
+
 }
