@@ -5,7 +5,7 @@
 
 "general": {
        	"node_id":"",
-	"reply_timeout": "5s",
+        "reply_timeout": "5s",
         "logger": "CGRATES_LOGGER",
         "log_level": CGRATES_LOG_LEVEL,
 },
@@ -47,15 +47,10 @@
 
 "kamailio_agent": {
         "enabled": CGRATES_KAMAILIO_ENABLED,
-        "evapi_conns":[
-                {"address": "CGRATES_KAMAILIO_EVAPI_HOST:CGRATES_KAMAILIO_EVAPI_PORT", "reconnects": 10}
-        ],
-        "sessions_conns": [
-                "*internal",
-        ],
+        "evapi_conns":[{"address": "CGRATES_KAMAILIO_EVAPI_HOST:CGRATES_KAMAILIO_EVAPI_PORT", "reconnects": 10}],
+        "sessions_conns": ["*internal"],
         "create_cdr": true,
 },
-
 
 
 }
