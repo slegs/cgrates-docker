@@ -25,22 +25,23 @@
         "db_port": 27017,
 },
 
-"dispatchers":{
-	"enabled": CGRATES_DISPATCHER_ENABLED,
-	"indexed_selects":true,
+"rpc_conns": {
+	"ralconn": {
+		"strategy": "*first",
+		"conns": [CGRATES_CONNS],
+	},
 },
-
 
 "sessions": {
 	"enabled": CGRATES_SESSION_ENABLED,
-	"rals_conns": [CGRATES_CONNS],
-	"cdrs_conns": [CGRATES_CONNS],
-	"resources_conns": [CGRATES_CONNS],
-	"suppliers_conns": [CGRATES_CONNS],
-	"attributes_conns": [CGRATES_CONNS],
-	"stats_conns": [CGRATES_CONNS],
-	"thresholds_conns": [CGRATES_CONNS],
-	"chargers_conns": [CGRATES_CONNS],
+	"rals_conns": ["ralconn"],
+	"cdrs_conns": ["ralconn"],
+	"resources_conns": ["ralconn"],
+	"suppliers_conns": ["ralconn"],
+	"attributes_conns": ["ralconn"],
+	"stats_conns": ["ralconn"],
+	"thresholds_conns": ["ralconn"],
+	"chargers_conns": ["ralconn"],
 	"debit_interval": "5s",
 	"channel_sync_interval":"7s",
 },
