@@ -22,8 +22,15 @@ if [ "${CGRATES_CONFIG}" = "SESSION" ]; then
 
 elif [ "${CGRATES_CONFIG}" = "RAL" ]; then
 
-        #copy the session config
-        cp /opt/cgrates-cfg-files/cgrates-ral.json /etc/cgrates/cgrates.json
+	if [ -z "$CGRATES_CONNS" ];  then
+	        sed -i 's/CGRATES_CONNS/{"address": "127.0.0.1:2012", "transport": "*json"},/g' /etc/cgrates/cgrates.json
+
+	else
+		sed -i 's/CGRATES_CONNS/'"$CGRATES_CONNS"'/g' /etc/cgrates/cgrates.json
+	fi
+
+  #copy the ral config
+  cp /opt/cgrates-cfg-files/cgrates-ral.json /etc/cgrates/cgrates.json
 
 fi
 

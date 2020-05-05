@@ -32,6 +32,17 @@
         "db_port": 27017,
 },
 
+"rpc_conns": {
+	"firstconn": {
+		"strategy": "*first",
+		"conns": [CGRATES_CONNS],
+	},
+  "allconn": {
+		"strategy": "*broadcast",
+		"conns": [CGRATES_CONNS],
+	},
+},
+
 
 "schedulers": {
 	"enabled": true,
@@ -89,6 +100,14 @@
 	"string_indexed_fields": ["Account"],
 },
 
+ "filters": {								// Filters configuration (*new)
+ 	"stats_conns": [
+    "*internal",
+  ],
+ 	"resources_conns": [
+    "*internal",
+    ],
+ },
 
 "suppliers": {
 	"enabled": true,
@@ -103,5 +122,22 @@
 	],
 	"string_indexed_fields": ["Account"],
 },
+
+ "analyzers":{
+ 	"enabled": true
+ },
+
+ "apiers": {
+ 	"enabled": true,
+ 	"caches_conns":[
+    "*internal"
+  ],
+ 	"scheduler_conns": [
+    "*allconn",
+    ],
+ 	"attributes_conns": [
+    "*internal",
+    ],
+ },
 
 }
