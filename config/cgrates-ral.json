@@ -133,7 +133,7 @@
     "*internal"
   ],
  	"scheduler_conns": [
-    "*allconn",
+    "allconn",
     ],
  	"attributes_conns": [
     "*internal",
