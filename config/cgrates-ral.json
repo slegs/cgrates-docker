@@ -4,7 +4,7 @@
 // Copyright (C) ITsysCOM GmbH
 
 "general": {
-       	"node_id":"",
+       	"node_id": "CGRATES_NODE_ID",
 	"reply_timeout": "5s",
         "logger": "CGRATES_LOGGER",
         "log_level": CGRATES_LOG_LEVEL,

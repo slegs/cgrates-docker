@@ -43,6 +43,7 @@ sed -i 's/MONGO_STORDB/'"$MONGO_STORDB"'/g' /etc/cgrates/cgrates.json
 #Update logger values in cgrates.json
 sed -i 's/CGRATES_LOG_LEVEL/'"$CGRATES_LOG_LEVEL"'/g' /etc/cgrates/cgrates.json
 sed -i 's/CGRATES_LOGGER/'"$CGRATES_LOGGER"'/g' /etc/cgrates/cgrates.json
+sed -i 's/CGRATES_NODE_ID/'"$CGRATES_NODE_ID"'/g' /etc/cgrates/cgrates.json
 
 
 

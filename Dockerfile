@@ -23,6 +23,7 @@ ENV CGRATES_LOGGER ${CGRATES_LOGGER:-*stdout}
 ENV CGRATES_DISPATCHER_ENABLED ${CGRATES_DISPATCHER_ENABLED:-false}
 ENV CGRATES_SESSION_ENABLED ${CGRATES_SESSION_ENABLED:-false}
 ENV CGRATES_CONNS ${CGRATES_CONNS}
+ENV CGRATES_NODE_ID ${CGRATES_NODE_ID}
 
 #Label description into image
 LABEL description="Runs CGRATES in a Docker container with option to copy in config and adjust via environment valriables and sed"
