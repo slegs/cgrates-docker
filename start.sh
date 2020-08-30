@@ -20,6 +20,8 @@ if [ "${CGRATES_CONFIG}" = "SESSION" ]; then
 		sed -i 's/CGRATES_CONNS/'"$CGRATES_CONNS"'/g' /etc/cgrates/cgrates.json
 	fi
 
+	sed -i 's/CGRATES_CONN_STRATEGY/'"$CGRATES_CONN_STRATEGY"'/g' /etc/cgrates/cgrates.json
+
 elif [ "${CGRATES_CONFIG}" = "DISPATCHER" ]; then
 
 	#copy the session config
@@ -34,6 +36,8 @@ elif [ "${CGRATES_CONFIG}" = "DISPATCHER" ]; then
 	else
 		sed -i 's/CGRATES_CONNS/'"$CGRATES_CONNS"'/g' /etc/cgrates/cgrates.json
 	fi
+
+	sed -i 's/CGRATES_CONN_STRATEGY/'"$CGRATES_CONN_STRATEGY"'/g' /etc/cgrates/cgrates.json
 
 elif [ "${CGRATES_CONFIG}" = "RAL" ]; then
 
