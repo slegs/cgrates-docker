@@ -70,10 +70,10 @@
 "rals": {
 	"enabled": true,
 	"thresholds_conns": [
-    "internalconn",
+    "*internal",
 	],
 	"stats_conns": [
-    "internalconn",
+    "*internal",
 	],
 },
 
@@ -81,7 +81,7 @@
 "cdrs": {
 	"enabled": true,
 	"stats_conns": [
-    "internalconn",
+    "*internal",
 	],
 	"sessions_cost_retries": 5,
 },
@@ -90,7 +90,7 @@
 "chargers": {
 	"enabled": true,
 	"attributes_conns": [
-    "internalconn",
+    "*internal",
 	],
 },
 
@@ -120,23 +120,23 @@
 
  "filters": {								// Filters configuration (*new)
  	"stats_conns": [
-    "internalconn",
+    "*internal",
   ],
  	"resources_conns": [
-    "internalconn",
+    "*internal",
     ],
  },
 
 "suppliers": {
 	"enabled": true,
 	"rals_conns": [
-    "internalconn",
+    "*internal",
 	],
 	"resources_conns": [
-    "internalconn",
+    "*internal",
 	],
 	"stats_conns": [
-    "internalconn",
+    "*internal",
 	],
 	"string_indexed_fields": ["Account"],
 },
@@ -148,13 +148,13 @@
  "apiers": {
  	"enabled": true,
  	"caches_conns":[
-    "internalconn"
+    "*internal"
   ],
  	"scheduler_conns": [
     "allconn",
     ],
  	"attributes_conns": [
-    "internalconn",
+    "*internal",
     ],
  },
 
