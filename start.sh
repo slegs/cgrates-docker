@@ -13,14 +13,6 @@ if [ "${CGRATES_CONFIG}" = "SESSION" ]; then
   #Update RALS values for remote raters in cgrates.json
 	sed -i 's/CGRATES_DISPATCHER_ENABLED/'"$CGRATES_DISPATCHER_ENABLED"'/g' /etc/cgrates/cgrates.json
 	sed -i 's/CGRATES_SESSION_ENABLED/'"$CGRATES_SESSION_ENABLED"'/g' /etc/cgrates/cgrates.json
-	if [ -z "$CGRATES_CONNS" ];  then
-	        sed -i 's/CGRATES_CONNS/{"address": "127.0.0.1:2012", "transport": "*json"},/g' /etc/cgrates/cgrates.json
-
-	else
-		sed -i 's/CGRATES_CONNS/'"$CGRATES_CONNS"'/g' /etc/cgrates/cgrates.json
-	fi
-
-	sed -i 's/CGRATES_CONN_STRATEGY/'"$CGRATES_CONN_STRATEGY"'/g' /etc/cgrates/cgrates.json
 
 elif [ "${CGRATES_CONFIG}" = "DISPATCHER" ]; then
 
@@ -30,27 +22,11 @@ elif [ "${CGRATES_CONFIG}" = "DISPATCHER" ]; then
   #Update RALS values for remote raters in cgrates.json
 	sed -i 's/CGRATES_DISPATCHER_ENABLED/'"$CGRATES_DISPATCHER_ENABLED"'/g' /etc/cgrates/cgrates.json
 	sed -i 's/CGRATES_SESSION_ENABLED/'"$CGRATES_SESSION_ENABLED"'/g' /etc/cgrates/cgrates.json
-	if [ -z "$CGRATES_CONNS" ];  then
-	        sed -i 's/CGRATES_CONNS/{"address": "127.0.0.1:2012", "transport": "*json"},/g' /etc/cgrates/cgrates.json
-
-	else
-		sed -i 's/CGRATES_CONNS/'"$CGRATES_CONNS"'/g' /etc/cgrates/cgrates.json
-	fi
-
-	sed -i 's/CGRATES_CONN_STRATEGY/'"$CGRATES_CONN_STRATEGY"'/g' /etc/cgrates/cgrates.json
 
 elif [ "${CGRATES_CONFIG}" = "RAL" ]; then
 
 	#copy the ral config
   cp /opt/cgrates-cfg-files/cgrates-ral.json /etc/cgrates/cgrates.json
-
-	if [ -z "$CGRATES_CONNS" ];  then
-	        sed -i 's/CGRATES_CONNS/{"address": "127.0.0.1:2012", "transport": "*json"},/g' /etc/cgrates/cgrates.json
-
-	else
-		sed -i 's/CGRATES_CONNS/'"$CGRATES_CONNS"'/g' /etc/cgrates/cgrates.json
-	fi
-
 
 fi
 
@@ -63,6 +39,14 @@ sed -i 's/MONGO_STORDB/'"$MONGO_STORDB"'/g' /etc/cgrates/cgrates.json
 sed -i 's/CGRATES_LOG_LEVEL/'"$CGRATES_LOG_LEVEL"'/g' /etc/cgrates/cgrates.json
 sed -i 's/CGRATES_LOGGER/'"$CGRATES_LOGGER"'/g' /etc/cgrates/cgrates.json
 sed -i 's/CGRATES_NAME/'"$CGRATES_NAME"'/g' /etc/cgrates/cgrates.json
+sed -i 's/CGRATES_CONN_STRATEGY/'"$CGRATES_CONN_STRATEGY"'/g' /etc/cgrates/cgrates.json
+
+if [ -z "$CGRATES_CONNS" ];  then
+				sed -i 's/CGRATES_CONNS/{"address": "127.0.0.1:2012", "transport": "*json"},/g' /etc/cgrates/cgrates.json
+
+else
+	sed -i 's/CGRATES_CONNS/'"$CGRATES_CONNS"'/g' /etc/cgrates/cgrates.json
+fi
 
 
 
