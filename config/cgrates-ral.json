@@ -62,11 +62,6 @@
 },
 
 
-"schedulers": {
-	"enabled": true,
-},
-
-
 "rals": {
 	"enabled": true,
 	"thresholds_conns": [
