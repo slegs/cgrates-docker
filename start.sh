@@ -51,7 +51,7 @@ fi
 
 
 #cat the cgrates.json file to screen (for debug)
-#cat /etc/cgrates/cgrates.json
+cat /etc/cgrates/cgrates.json
 
 #Set versions (if first time launch)
 /usr/bin/cgr-migrator -exec=*set_versions -config_path=/etc/cgrates
