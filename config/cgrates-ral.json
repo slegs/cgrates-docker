@@ -36,7 +36,7 @@
   "internalconn": {
 		"strategy": "*first",
 		"conns": [
-			{"address": "127.0.0.1:2012", "transport":"*json"},
+			{"address": "CGRATES_NAME:2012", "transport":"*json"},
 		],
 	},
   "firstconn": {
