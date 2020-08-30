@@ -33,8 +33,26 @@
 },
 
 "rpc_conns": {
-	"firstconn": {
+  "internalconn": {
 		"strategy": "*first",
+		"conns": [
+			{"address": "127.0.0.1:2012", "transport":"*json"},
+		],
+	},
+  "firstconn": {
+		"strategy": "*first",
+		"conns": [CGRATES_CONNS],
+	},
+  "roundrobinconn": {
+		"strategy": "*round_robin",
+		"conns": [CGRATES_CONNS],
+	},
+  "randomconn": {
+		"strategy": "*random",
+		"conns": [CGRATES_CONNS],
+	},
+  "ratioconn": {
+		"strategy": "*ratio",
 		"conns": [CGRATES_CONNS],
 	},
   "allconn": {
@@ -52,10 +70,10 @@
 "rals": {
 	"enabled": true,
 	"thresholds_conns": [
-    "*internal",
+    "internalconn",
 	],
 	"stats_conns": [
-    "*internal",
+    "internalconn",
 	],
 },
 
@@ -63,7 +81,7 @@
 "cdrs": {
 	"enabled": true,
 	"stats_conns": [
-    "*internal",
+    "internalconn",
 	],
 	"sessions_cost_retries": 5,
 },
@@ -72,7 +90,7 @@
 "chargers": {
 	"enabled": true,
 	"attributes_conns": [
-    "*internal",
+    "internalconn",
 	],
 },
 
@@ -102,23 +120,23 @@
 
  "filters": {								// Filters configuration (*new)
  	"stats_conns": [
-    "*internal",
+    "internalconn",
   ],
  	"resources_conns": [
-    "*internal",
+    "internalconn",
     ],
  },
 
 "suppliers": {
 	"enabled": true,
 	"rals_conns": [
-    "*internal",
+    "internalconn",
 	],
 	"resources_conns": [
-    "*internal",
+    "internalconn",
 	],
 	"stats_conns": [
-    "*internal",
+    "internalconn",
 	],
 	"string_indexed_fields": ["Account"],
 },
@@ -130,13 +148,13 @@
  "apiers": {
  	"enabled": true,
  	"caches_conns":[
-    "*internal"
+    "internalconn"
   ],
  	"scheduler_conns": [
     "allconn",
     ],
  	"attributes_conns": [
-    "*internal",
+    "internalconn",
     ],
  },
 

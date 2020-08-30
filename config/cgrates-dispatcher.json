@@ -1,14 +1,12 @@
 {
 
-// Real-time Online/Offline Charging System (OCS) for Telecom & ISP environments
-// Copyright (C) ITsysCOM GmbH
-
-"general": {
+// Real-time"general": {
        	"node_id": "CGRATES_NAME",
-        "reply_timeout": "5s",
+	"reply_timeout": "5s",
         "logger": "CGRATES_LOGGER",
         "log_level": CGRATES_LOG_LEVEL,
 },
+
 
 "listen": {
 	"rpc_json": "0.0.0.0:2012",
@@ -60,9 +58,13 @@
 	},
 },
 
+
+"schedulers": {
+	"enabled": true,
+},
+
 "sessions": {
 	"enabled": CGRATES_SESSION_ENABLED,
-  "listen_bijson": "0.0.0.0:2014",
 	"rals_conns": ["firstconn"],
 	"cdrs_conns": ["firstconn"],
 	"resources_conns": ["firstconn"],
@@ -75,11 +77,5 @@
 	"channel_sync_interval":"7s",
 },
 
-"kamailio_agent": {
-        "enabled": CGRATES_KAMAILIO_ENABLED,
-        "evapi_conns":[{"address": "CGRATES_KAMAILIO_EVAPI_HOST:CGRATES_KAMAILIO_EVAPI_PORT", "reconnects": 10}],
-        "sessions_conns": ["internalconn"],
-        "create_cdr": true,
-},
 
 }
