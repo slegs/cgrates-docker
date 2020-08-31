@@ -109,6 +109,12 @@
 
 "stats": {
 	"enabled": true,
+  "store_interval": "20",
+  "store_uncompressed_limit": 0,
+  "thresholds_conns": [
+    "CGRATES_CONN_STRATEGY",
+  ],
+  "indexed_selects": true,
 	"string_indexed_fields": ["Account","RunID","Destination"],
 },
 
