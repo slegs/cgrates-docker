@@ -157,7 +157,7 @@
  "apiers": {
  	"enabled": true,
  	"caches_conns":[
-    "CGRATES_CONN_STRATEGY"
+    "allconn"
   ],
  	"scheduler_conns": [
     "CGRATES_CONN_STRATEGY",
