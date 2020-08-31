@@ -21,14 +21,14 @@
         "db_type": "mongo",
         "db_host": "MONGO_HOST",
         "db_name": "MONGO_DATADB",
-        "db_port": 27017,
+        "db_port": MONGO_PORT,
 },
 
 "stor_db": {
         "db_type": "mongo",
         "db_host": "MONGO_HOST",
         "db_name": "MONGO_STORDB",
-        "db_port": 27017,
+        "db_port": MONGO_PORT,
 },
 
 "rpc_conns": {

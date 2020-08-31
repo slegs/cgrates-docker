@@ -22,7 +22,7 @@
         "db_type": "mongo",
         "db_host": "MONGO_HOST",
         "db_name": "MONGO_DATADB",
-        "db_port": 27017,
+        "db_port": MONGO_PORT,
 },
 
 "stor_db": {
@@ -69,6 +69,9 @@
 
 "rals": {
 	"enabled": true,
+  "caches_conns": [
+    "allconn",
+	],
 	"thresholds_conns": [
     "CGRATES_CONN_STRATEGY",
 	],
@@ -157,7 +160,7 @@
     "CGRATES_CONN_STRATEGY"
   ],
  	"scheduler_conns": [
-    "allconn",
+    "CGRATES_CONN_STRATEGY",
     ],
  	"attributes_conns": [
     "CGRATES_CONN_STRATEGY",

@@ -30,16 +30,19 @@ elif [ "${CGRATES_CONFIG}" = "RAL" ]; then
 
 fi
 
+#Update core networking for connectivity in cgrates.json
+sed -i 's/CGRATES_NAME/'"$CGRATES_NAME"'/g' /etc/cgrates/cgrates.json
+sed -i 's/CGRATES_CONN_STRATEGY/'"$CGRATES_CONN_STRATEGY"'/g' /etc/cgrates/cgrates.json
+
 #Update db values in cgrates.json
 sed -i 's/MONGO_HOST/'"$MONGO_HOST"'/g' /etc/cgrates/cgrates.json
+sed -i 's/MONGO_PORT/'"$MONGO_PORT"'/g' /etc/cgrates/cgrates.json
 sed -i 's/MONGO_DATADB/'"$MONGO_DATADB"'/g' /etc/cgrates/cgrates.json
 sed -i 's/MONGO_STORDB/'"$MONGO_STORDB"'/g' /etc/cgrates/cgrates.json
 
 #Update logger values in cgrates.json
 sed -i 's/CGRATES_LOG_LEVEL/'"$CGRATES_LOG_LEVEL"'/g' /etc/cgrates/cgrates.json
 sed -i 's/CGRATES_LOGGER/'"$CGRATES_LOGGER"'/g' /etc/cgrates/cgrates.json
-sed -i 's/CGRATES_NAME/'"$CGRATES_NAME"'/g' /etc/cgrates/cgrates.json
-sed -i 's/CGRATES_CONN_STRATEGY/'"$CGRATES_CONN_STRATEGY"'/g' /etc/cgrates/cgrates.json
 
 if [ -z "$CGRATES_CONNS" ];  then
 				sed -i 's/CGRATES_CONNS/{"address": "127.0.0.1:2012", "transport": "*json"},/g' /etc/cgrates/cgrates.json

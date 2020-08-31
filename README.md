@@ -4,7 +4,7 @@
 On Docker Hub
 
 slegs/cgrates-docker:latest is stable-3.9.0
-slegs/cgrates-docker:test is dev-3.9.2
+slegs/cgrates-docker:test is dev-3.9.3
 
 ```
 
@@ -25,6 +25,7 @@ CGRateS docker image based on MongoDB backend for datadb and stordb. Based on De
 * `CGRATES_CFG` with default `RAL`. Options currently `SESSION` and `RAL` (`DISPATCHER` WIP). Copies in config relative to purpose.
 * `CGRATES_NAME` with default `localhost`. Allows you to pass the instance name which is used in Node ID and in networking (so must be addressable).
 * `MONGO_HOST` with default `127.0.0.1` though no Mongo DB server in build so wont work unless this value is set correctly. In Kubernetes pass the full cluster replicaset string as `MONGO_HOST` env variable (if using a Mongo DB replicaset).
+* `MONGO_PORT` with default `27017`.
 * `MONGO_DATADB` with default `10`
 * `MONGO_STORDB` with default `cgrates`
 * `CGRATES_LOG_LEVEL` with default `1`
