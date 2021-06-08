@@ -1,0 +1,77 @@
+{
+
+// Real-time Online/Offline Charging System (OCS) for Telecom & ISP environments
+// Copyright (C) ITsysCOM GmbH
+
+"general": {
+       	"node_id": "CGRATES_NAME",
+	"reply_timeout": "5s",
+        "logger": "CGRATES_LOGGER",
+        "log_level": CGRATES_LOG_LEVEL,
+},
+
+
+"listen": {
+	"rpc_json": "0.0.0.0:2012",
+	"rpc_gob": "0.0.0.0:2013",
+	"http": "0.0.0.0:2080",
+},
+
+
+"data_db": {
+        "db_type": "mongo",
+        "db_host": "MONGO_HOST",
+        "db_name": "MONGO_DATADB",
+        "db_port": MONGO_PORT,
+},
+
+"stor_db": {
+        "db_type": "mongo",
+        "db_host": "MONGO_HOST",
+        "db_name": "MONGO_STORDB",
+        "db_port": 27017,
+},
+
+"rpc_conns": {
+  "internalconn": {
+		"strategy": "*first",
+		"conns": [
+			{"address": "CGRATES_NAME:2012", "transport":"*json"},
+		],
+	},
+  "firstconn": {
+		"strategy": "*first",
+		"conns": [CGRATES_CONNS],
+	},
+  "roundrobinconn": {
+		"strategy": "*round_robin",
+		"conns": [CGRATES_CONNS],
+	},
+  "randomconn": {
+		"strategy": "*random",
+		"conns": [CGRATES_CONNS],
+	},
+  "ratioconn": {
+		"strategy": "*ratio",
+		"conns": [CGRATES_CONNS],
+	},
+  "allconn": {
+		"strategy": "*broadcast",
+		"conns": [CGRATES_CONNS],
+	},
+},
+
+ "apiers": {
+ 	"enabled": true,
+ 	"caches_conns":[
+    "allconn"
+  ],
+ 	"scheduler_conns": [
+    "CGRATES_CONN_STRATEGY",
+    ],
+ 	"attributes_conns": [
+    "CGRATES_CONN_STRATEGY",
+    ],
+ },
+
+}

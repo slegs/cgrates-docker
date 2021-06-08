@@ -28,6 +28,11 @@ elif [ "${CGRATES_CONFIG}" = "RAL" ]; then
 	#copy the ral config
   cp /opt/cgrates-cfg-files/cgrates-ral.json /etc/cgrates/cgrates.json
 
+elif [ "${CGRATES_CONFIG}" = "API" ]; then
+
+	#copy the ral config
+  cp /opt/cgrates-cfg-files/cgrates-api.json /etc/cgrates/cgrates.json
+
 fi
 
 #Update core networking for connectivity in cgrates.json
