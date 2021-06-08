@@ -12,11 +12,32 @@
 
 
 "listen": {
+	"rpc_json": "0.0.0.0:2012",
+	"rpc_gob": "0.0.0.0:2013",
 	"http": "0.0.0.0:2080",
 },
 
+"data_db": {
+        "db_type": "mongo",
+        "db_host": "MONGO_HOST",
+        "db_name": "MONGO_DATADB",
+        "db_port": MONGO_PORT,
+},
+
+"stor_db": {
+        "db_type": "mongo",
+        "db_host": "MONGO_HOST",
+        "db_name": "MONGO_STORDB",
+        "db_port": 27017,
+},
 
 "rpc_conns": {
+  "internalconn": {
+		"strategy": "*first",
+		"conns": [
+			{"address": "CGRATES_NAME:2012", "transport":"*json"},
+		],
+	},
   "firstconn": {
 		"strategy": "*first",
 		"conns": [CGRATES_CONNS],
